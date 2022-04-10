@@ -1,0 +1,20 @@
+
+ <!-- drawable/splashscree.xml -->
+<vector
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:aapt="http://schemas.android.com/aapt"
+android:width="310.68dp"
+android:height="424.23dp"
+android:viewportWidth="310.68"
+android:viewportHeight="424.23"
+    >
+
+<group>
+
+    <clip-path
+        android:pathData="M0 0H310.679V424.232H0V0Z"
+        />
+
+</group>
+
+</vector>

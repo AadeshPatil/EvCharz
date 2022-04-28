@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.evgoo.evgoo">
+    package="com.project.evcharz" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -8,16 +11,30 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EvGoo">
+        android:theme="@style/Theme.Evcharz" >
         <activity
-            android:name=".LoginActivity"
+            android:name=".MenuActivity"
+            android:exported="false"
+            android:label="@string/title_activity_menu"
+            android:theme="@style/Theme.Evcharz.NoActionBar" />
+        <activity
+            android:name=".Pages.RegisterUser"
+            android:exported="false" />
+        <activity
+            android:name=".Pages.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Pages.OtpValidation"
+            android:exported="false" />
+        <activity
+            android:name=".Pages.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
-            android:exported="true">
+            android:name=".Pages.SplashScreen"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

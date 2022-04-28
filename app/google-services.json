@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "882612430853",
+    "project_id": "evgoo-e746d",
+    "storage_bucket": "evgoo-e746d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882612430853:android:50ce0eb1ca6ec7cce7146c",
+        "android_client_info": {
+          "package_name": "com.project.evcharz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882612430853-f1shu51aplr52kpt4nnuc8ethmr525qp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoUz8oM5mnPEYiODNdOMiy_1pnTHZG3tY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882612430853-f1shu51aplr52kpt4nnuc8ethmr525qp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

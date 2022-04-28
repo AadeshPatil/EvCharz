@@ -3,9 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/6SemProject/app/src/main/res/drawable/splash_screnn.xml" value="0.208" />
-        <entry key="..\:/6SemProject/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/6SemProject/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/drawable/btn_bg.xml" value="0.2" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/drawable/numberinput.xml" value="0.2" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/drawable/reg_card.xml" value="0.2" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/activity_login.xml" value="0.22826086956521738" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/activity_menu.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/activity_otp_validation.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/activity_register_user.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/activity_splash_screen.xml" value="0.22826086956521738" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/app_bar_menu.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/content_menu.xml" value="0.2359375" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/fragment_gallery.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/layout/nav_header_menu.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
       </map>
     </option>
   </component>

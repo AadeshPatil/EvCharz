@@ -1,12 +1,16 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 
 android {
     compileSdk 31
 
+    aaptOptions {
+        cruncherEnabled = false
+    }
     defaultConfig {
         applicationId "com.project.evcharz"
         minSdk 20
@@ -50,7 +54,9 @@ dependencies {
     //noinspection GradleCompatible
     implementation "androidx.constraintlayout:constraintlayout:2.1.0"
     implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
-
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
 }

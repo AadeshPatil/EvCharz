@@ -3,26 +3,40 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/booking_icon.xml" value="0.1415" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/charz_icon.xml" value="0.2205" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/home.xml" value="0.1605" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.251" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/ic_baseline_lens_24.xml" value="0.251" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/side_nav_bar.xml" value="0.2" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/reg_card.xml" value="0.1605" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/side_nav_bar.xml" value="0.176" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_charg_station_add.xml" value="0.20521590423257802" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_home.xml" value="0.21792890262751158" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_maps.xml" value="0.20521590423257802" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_menu.xml" value="0.264" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_otp_validation.xml" value="0.25" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_register_user.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_register_user.xml" value="0.2" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_user_profile.xml" value="0.47332185886402756" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_view_details.xml" value="0.264" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/app_bar_menu.xml" value="0.25" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/content_menu.xml" value="0.2" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/fragment_gallery.xml" value="0.25" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/fragment_home.xml" value="0.20521590423257802" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/fragment_slideshow.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/header.xml" value="0.20521590423257802" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/header_menu.xml" value="0.264" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/ic_baseline_edit_24.xml" value="0.20521590423257802" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/nav_header_menu.xml" value="0.264" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/staion_details_card.xml" value="0.39285714285714285" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/menu/header.xml" value="0.20521590423257802" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/menu/main_menu.xml" value="0.20521590423257802" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/menu/menu.xml" value="0.25" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/xml/provider_path.xml" value="0.20521590423257802" />
         <entry key="..\:/6th Sem/Project/Code/app/src/main/res/drawable/btn_bg.xml" value="0.2" />
         <entry key="..\:/6th Sem/Project/Code/app/src/main/res/drawable/numberinput.xml" value="0.2" />
         <entry key="..\:/6th Sem/Project/Code/app/src/main/res/drawable/reg_card.xml" value="0.2" />

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/main_contain"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home_icon"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_booking"
+            android:icon="@drawable/booking_icon"
+            android:title="Booking" />
+
+        <item
+            android:id="@+id/nav_wallet"
+            android:icon="@drawable/ic_baseline_account_balance_wallet_24"
+            android:title="Wallet" />
+
+        <item
+            android:id="@+id/nav_vehicle"
+            android:icon="@drawable/vehicle_icon"
+            android:title="Vehicle Details" />
+    </group>
+    <group
+        android:id="@+id/profile_menu"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+android:icon="@drawable/ic_baseline_boy_24"
+            android:title="Profile" />
+
+        <item
+            android:id="@+id/nav_Logout"
+android:icon="@drawable/logout_icon"
+            android:title="Logout" />
+
+    </group>
+    <group
+        android:id="@+id/about_comp"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_Inquiry"
+            android:icon="@drawable/inquiry_icon"
+            android:title="Inquiry" />
+
+        <item
+            android:id="@+id/nav_About_us"
+            android:icon="@drawable/charz_icon"
+            android:title="About Us" />
+
+    </group>
+
+</menu>

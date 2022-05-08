@@ -8,12 +8,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,13 +45,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.project.evcharz.Model.BookingModel;
 import com.project.evcharz.Model.PlaceModel;
 import com.project.evcharz.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, Serializable {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -117,7 +121,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     PlaceModel j = stationList.get(i);
                     double lat = j.getLatitude();
                     double longi = j.getLongitude();
-                    String placeName = j.getPlace_name();
                     LatLng location1 = new LatLng(lat, longi);
                     Log.d("hello", String.valueOf(location1));
                     int height = 100;
@@ -171,7 +174,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_booking:
-                Intent intent2 = new Intent(HomeActivity.this, ChargStationAdd.class);
+                Intent intent2 = new Intent(HomeActivity.this, BookingModel.class);
                 startActivity(intent2);
                 break;
             case R.id.nav_About_us:
@@ -183,6 +186,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
@@ -201,9 +205,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 googleMap.setMyLocationEnabled(true);
                 googleMap.getUiSettings().setMyLocationButtonEnabled(true);
 
+                double latitude = 0;
+                double longitude = 0;
+
                 Location location = locationManager.getLastKnownLocation(provider);
-                double latitude = location.getLatitude();
-                double longitude = location.getLongitude();
+                if (location != null) {
+                    Log.e("TAG", "GPS is on");
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
+
+                }
+                else{
+                    locationManager.requestLocationUpdates(provider, 1000, 0, (LocationListener) this);
+                }
+
                 LatLng currentLocation = new LatLng(latitude, longitude);
 
                 MarkerOptions markerOptions = new MarkerOptions();
@@ -228,6 +243,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 rlp.setMargins(0, 0, 30, 30);
 
 
+                double finalLatitude1 = latitude;
+                double finalLongitude1 = longitude;
                 googleMap.setOnMarkerClickListener(m ->{
 
 //                    Log.d("Marker", String.valueOf(m.getSnippet()));
@@ -245,10 +262,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         PlaceModel Station = stationList.get(Integer.parseInt(m.getSnippet()));
                         Log.d("Marker", String.valueOf(Station.getPlace_name()));
 
-                        TextView Place_name = findViewById(R.id.station_name);
-                        TextView rate = findViewById(R.id.unit_rate);
+
+                        TextView Place_name = findViewById(R.id.station_name_booking);
+                        TextView rate = findViewById(R.id.timing_booking_page);
+                        Button book_slot = findViewById(R.id.reserve_btn);
+
                         Place_name.setText(Station.getPlace_name());
                         rate.setText("₹ "+Station.getUnit_rate() +" per unit");
+
+                        book_slot.setOnClickListener(v->{
+
+                            Intent i;
+                            i = new Intent(this, ViewDetails.class);
+                            i.putExtra("StationModel",Station);
+                            i.putExtra("cur_Latitude",String.valueOf(finalLatitude1));
+                            i.putExtra("cur_Longitude",String.valueOf(finalLongitude1));
+                            startActivity(i);
+                        });
                     }
                     return false;
                 });

@@ -42,7 +42,7 @@ public class ChargStationAdd extends AppCompatActivity {
             String address = adress.getText().toString();
             String id = databaseReference.push().getKey();
 
-                PlaceModel placeModel = new PlaceModel(lat,longi,place,unit_rate1,"","",address);
+                PlaceModel placeModel = new PlaceModel(id,lat,longi,place,unit_rate1,"","",address);
                 databaseReference.child(id).setValue(placeModel).addOnCompleteListener(it->{
                     if (it.isSuccessful()){
                         Toast.makeText(this,"added", Toast.LENGTH_SHORT).show();

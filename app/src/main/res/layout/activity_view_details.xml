@@ -16,17 +16,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/charge_station_pic" />
+        app:srcCompat="@drawable/side_nav_bar" />
 
     <TextView
         android:id="@+id/txt_name_of_station"
-        android:layout_width="194dp"
-        android:layout_height="76dp"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/secularone_regular"
         android:text="Name_of_Station"
         android:textColor="@color/black"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:textStyle="bold"
-
+        app:fontFamily="@font/secularone_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.074"
@@ -34,83 +35,129 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView5"
         app:layout_constraintVertical_bias="0.036" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/locate_to_map"
-        android:layout_width="62dp"
-        android:layout_height="46dp"
-        android:background="#23D1BBBB"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@android:string/paste"
+        android:src="@drawable/locate_map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="goToMap()"
-        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5"
-        app:layout_constraintVertical_bias="0.043"
-        app:srcCompat="?attr/homeAsUpIndicator"
-        tools:srcCompat="@drawable/locate_map" />
+        app:layout_constraintVertical_bias="0.036" />
 
-    <TextView
-        android:id="@+id/Distance"
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Distance"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_name_of_station"
-        app:layout_constraintVertical_bias="0.052" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintVertical_bias="0.284"
+        tools:ignore="MissingConstraints">
+        >
 
-    <TextView
-        android:id="@+id/vehical_type"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/Distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="15dp"
+            android:text="Distance"
+
+            />
+
+        <TextView
+            android:id="@+id/vehical_type"
+            android:layout_width="95dp"
+            android:layout_height="19dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="15dp"
+            android:text="Vehicle Types" />
+
+        <TextView
+            android:id="@+id/lbl_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Rating" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vehicle Type"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/lbl_rating"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locate_to_map"
-        app:layout_constraintVertical_bias="0.115" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.0">
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="98dp"
-        android:layout_height="39dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.96"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vehical_type"
-        app:layout_constraintVertical_bias="0.05"
-        app:srcCompat="@drawable/bike_marker" />
+        <TextView
+            android:id="@+id/txt_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="15dp"
+            android:text="10 Km"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="97dp"
+            android:layout_height="31dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="15dp"
+            app:srcCompat="@drawable/vehicles" />
+
+        <TextView
+            android:id="@+id/txt_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="4.9/5"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/lbl_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Address"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/txt_address"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Distance"
-        app:layout_constraintVertical_bias="0.183" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3"
+        app:layout_constraintVertical_bias="0.902" />
 
     <TextView
         android:id="@+id/txt_address"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:textColor="@color/black"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="270dp"
+        android:background="@drawable/border_textview"
+        android:padding="10dp"
         android:text="MRW6+3J2, Bag Wasti Rd, Chikhali, Pimpri-Chinchwad, Maharashtra 411062"
+        android:textAlignment="center"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_address"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/book_slot"
@@ -121,21 +168,25 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_address"
-        app:layout_constraintVertical_bias="0.782" />
+        app:layout_constraintVertical_bias="0.51" />
 
     <TextView
-        android:id="@+id/txt_distance"
+        android:id="@+id/timing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="10 Km"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/lbl_address"
-        app:layout_constraintEnd_toStartOf="@+id/imageView7"
-        app:layout_constraintHorizontal_bias="0.148"
+        android:background="@drawable/border_textview"
+        android:padding="5dp"
+        android:text="Timing 6:00 am to 11:55pm"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Distance"
-        app:layout_constraintVertical_bias="0.328" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_name_of_station"
+        app:layout_constraintVertical_bias="0.34" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

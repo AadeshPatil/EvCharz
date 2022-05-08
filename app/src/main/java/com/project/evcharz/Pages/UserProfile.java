@@ -41,7 +41,6 @@ public class UserProfile extends AppCompatActivity {
     UserModel userModel;
     StorageReference storageReference;
     Context context;
-    ProgressBar progressBar;
     private final int PICK_IMAGE_REQUEST = 22;
     String currentUid;
     EditText txt_name,txt_email,txt_phone_no;
@@ -59,11 +58,9 @@ public class UserProfile extends AppCompatActivity {
          txt_name = findViewById(R.id.eTextUserName);
          txt_email = findViewById(R.id.email_address);
          txt_phone_no = findViewById(R.id.mb_no);
-        progressBar = findViewById(R.id.progressBar2);
 
         Button updateBtn = findViewById(R.id.update_btn);
 
-        progressBar.setVisibility(View.VISIBLE);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("userDetails");
@@ -89,9 +86,8 @@ public class UserProfile extends AppCompatActivity {
             if (TextUtils.isEmpty(name) && TextUtils.isEmpty(phone) && TextUtils.isEmpty(address)) {
                 Toast.makeText(this, "Please fill All the Values", Toast.LENGTH_SHORT).show();
             }else{
-
-//                addDataToFirebase(name, phone, address)
-                userModel = new UserModel(name,address , phone);
+                String id = databaseReference.push().getKey();
+                userModel = new UserModel(currentUid,name,address , phone);
                     if (currentUid != null){
                         databaseReference.child(currentUid).setValue(userModel).addOnCompleteListener(it->{
                             if (it.isSuccessful()){
@@ -145,7 +141,7 @@ public class UserProfile extends AppCompatActivity {
 
             String filePath2 = copyFileToInternalStorage(filePath,"temp");
             System.out.println("Selectedfilepath "+filePath);
-            uploadPic(filePath2);
+//            uploadPic(filePath2);
         }
     }
 
@@ -155,17 +151,20 @@ public class UserProfile extends AppCompatActivity {
 
         databaseReference.child(currentUid).get().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
-                Log.e("firebase", "Error getting data", task.getException());
+                Log.d("firebase", "Error getting data", task.getException());
             }
             else {
                 Log.d("firebase", String.valueOf(task.getResult().getValue()));
                 UserModel userModel = task.getResult().getValue(UserModel.class);
-                assert userModel != null;
+
                 txt_phone_no.setText(userModel.getMobileNo());
                 txt_name.setText(userModel.getName());
                 txt_email.setText(userModel.getEmailId());
+
+
+                txt_phone_no.setEnabled(false);
             }
-            progressBar.setVisibility(View.GONE);
+
         });
     }
 

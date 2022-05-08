@@ -8,9 +8,6 @@
     tools:openDrawer="start"
     android:fitsSystemWindows="true"
     tools:context=".Pages.HomeActivity">
-
-
-
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,6 +34,9 @@
 
 
     </com.google.android.material.navigation.NavigationView>
+
+
+
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -104,43 +104,44 @@
 
 
                 <TextView
-                    android:id="@+id/station_name"
-                    android:layout_width="221dp"
-                    android:layout_height="26dp"
+                    android:id="@+id/station_name_booking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="17dp"
                     android:layout_marginEnd="37dp"
-                    android:layout_toEndOf="@+id/station_img"
-
+                    android:layout_toEndOf="@+id/station_img_booking_page"
+                    android:fontFamily="@font/secularone_regular"
+                    app:fontFamily="@font/secularone_regular"
                     android:text="Station Name"
+                    android:textSize="12dp"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/station_img"
+                    android:id="@+id/station_img_booking_page"
                     android:layout_width="103dp"
                     android:layout_height="99dp"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="9dp"
                     app:srcCompat="@drawable/userdp" />
 
                 <TextView
-                    android:id="@+id/unit_rate"
-                    android:layout_width="201dp"
-                    android:layout_height="18dp"
-                    android:layout_alignParentTop="true"
+                    android:id="@+id/timing_booking_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="11dp"
-                    android:layout_marginTop="59dp"
-                    android:layout_marginEnd="58dp"
-                    android:layout_toEndOf="@+id/station_img"
+
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="75dp"
+
+                    android:layout_marginBottom="0dp"
+                    android:layout_toEndOf="@+id/station_img_booking_page"
+                    android:paddingTop="5dp"
                     android:text="₹ 16 per unit"
                     android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:textSize="12dp" />
 
                 <Button
                     android:id="@+id/reserve_btn"
@@ -151,7 +152,7 @@
                     android:layout_marginStart="137dp"
                     android:layout_marginTop="80dp"
                     android:layout_marginEnd="0dp"
-                    android:layout_toEndOf="@+id/station_img"
+                    android:layout_toEndOf="@+id/station_img_booking_page"
                     android:background="@drawable/btn_bg"
                     android:text="Reserve"
                     android:textColor="@color/white" />

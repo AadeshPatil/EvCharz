@@ -13,4 +13,11 @@
     </style>
     <style name="Theme.Evcharz.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Evcharz.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/nunitosans_black</item>
+        <item name="fontFamily">@font/nunitosans_black</item>
+        <!-- target android sdk versions < 26 and > 14 if theme other than AppCompat -->
+    </style>
+
 </resources>

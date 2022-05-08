@@ -1,7 +1,11 @@
 package com.project.evcharz.Model;
 
-public class PlaceModel {
+import java.io.Serializable;
 
+public class PlaceModel implements Serializable {
+
+
+    String station_id;
     Double latitude;
     Double longitude;
     String place_name;
@@ -10,12 +14,12 @@ public class PlaceModel {
     String photoId;
     String address;
 
-    public String getAddress() {
-        return address;
+    public String getStation_id() {
+        return station_id;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setStation_id(String station_id) {
+        this.station_id = station_id;
     }
 
     public Double getLatitude() {
@@ -66,8 +70,16 @@ public class PlaceModel {
         this.photoId = photoId;
     }
 
+    public String getAddress() {
+        return address;
+    }
 
-    public PlaceModel(Double latitude, Double longitude, String place_name, String unit_rate, String rating, String photoId, String address) {
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public PlaceModel(String station_id, Double latitude, Double longitude, String place_name, String unit_rate, String rating, String photoId, String address) {
+        this.station_id = station_id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.place_name = place_name;

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Pages.HostViewActivity">
+
+    <TextView
+        android:id="@+id/welcome_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_msg"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="italic"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103" />
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="50dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/nav_header_desc"
+        app:layout_constraintBottom_toTopOf="@+id/welcome_msg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/homeAsUpIndicator" />
+
+    <TextView
+        android:id="@+id/lbl_page_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Host Access"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/welcome_msg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/back_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.522" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_msg"
+        app:layout_constraintVertical_bias="0.03">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView4"
+            android:layout_width="183dp"
+            android:layout_height="109dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cardView3"
+            app:layout_constraintHorizontal_bias="0.444"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_msg"
+            app:layout_constraintVertical_bias="0.037"
+            tools:ignore="MissingConstraints">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#C9D7DD">
+
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="49dp"
+                    android:text="Total Unit Used"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="18dp"
+                    android:text="110.10 Units"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="177dp"
+            android:layout_height="110dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.936"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_msg"
+            app:layout_constraintVertical_bias="0.035"
+            tools:ignore="MissingConstraints">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#C9D7DD">
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginEnd="-9dp"
+                    android:layout_marginBottom="50dp"
+                    android:text="Total Earning"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Rs. 1201.12"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98">
+
+        <Button
+            android:id="@+id/withdrow_money"
+            android:layout_width="143dp"
+            android:layout_height="48dp"
+            android:background="#04115C"
+            android:padding="5dp"
+            android:text="Withdraw Money"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="179dp"
+            android:layout_height="48dp"
+            android:background="#04115C"
+            android:layout_marginStart="10dp"
+            android:text="Get Monthly Report"
+            android:textColor="@color/white"
+/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ledger History"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.03" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

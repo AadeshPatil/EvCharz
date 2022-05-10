@@ -20,25 +20,25 @@
 
     <ImageView
         android:id="@+id/imageView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="268dp"
+        android:layout_height="359dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77"
+        app:layout_constraintVertical_bias="0.575"
         app:srcCompat="@drawable/reg_card" />
 
     <ImageView
         android:id="@+id/imageView15"
-        android:layout_width="153dp"
-        android:layout_height="105dp"
+        android:layout_width="125dp"
+        android:layout_height="66dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944"
+        app:layout_constraintVertical_bias="0.775"
         app:srcCompat="@drawable/telegram_ico" />
 
     <TextView
@@ -114,7 +114,7 @@
         app:layout_constraintVertical_bias="0.09" />
 
     <ImageButton
-        android:id="@+id/imageView16"
+        android:id="@+id/bk_btn"
         android:layout_width="60dp"
         android:layout_height="85dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView11"
@@ -123,7 +123,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="?attr/homeAsUpIndicator" />
+        app:srcCompat="?attr/homeAsUpIndicator"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView29"
@@ -136,7 +137,7 @@
         app:layout_constraintBottom_toTopOf="@+id/imageView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toEndOf="@+id/imageView16"
+        app:layout_constraintStart_toEndOf="@+id/bk_btn"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.124" />
 

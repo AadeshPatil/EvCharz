@@ -3,9 +3,13 @@ package com.project.evcharz.Pages;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -15,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.project.evcharz.Model.BookingModel;
+import com.project.evcharz.Model.HostSideBooking;
 import com.project.evcharz.Model.PlaceModel;
 import com.project.evcharz.R;
 import com.razorpay.Checkout;
@@ -22,8 +27,12 @@ import com.razorpay.PaymentResultListener;
 
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 public class PaymentActivity extends AppCompatActivity implements PaymentResultListener {
@@ -32,19 +41,23 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
 
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference,hostBooking;
     String currentUid;
 
     BookingModel bookingModel;
-
+    String loggedUserMbNo;
     java.util.Date date2;
     String price,unit_con,duration,start_time,end_time,vehicle_type,transaction_mode;
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
+        SharedPreferences sh = getSharedPreferences("LoginDetails", MODE_PRIVATE);
+        loggedUserMbNo = sh.getString("loggedUserMbNo", "");
 
         price = getIntent().getStringExtra("price");
         unit_con = getIntent().getStringExtra("unit_con");
@@ -97,6 +110,8 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
         final Activity activity = this;
         final Checkout co = new Checkout();
 
+        Log.d("price",price);
+
         double finalAmount = Float.parseFloat(price)*100;
 
         co.setKeyID("rzp_test_gRpSX81brvUAyH");
@@ -137,21 +152,37 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
 
 
 
-
-
     private void book_station() {
 
         int randomPIN = (int)(Math.random()*9000)+1000;
+        Date date = new Date();
 
-        bookingModel = new BookingModel(randomPIN,String.valueOf(date2),"",start_time,end_time,vehicle_type,
-                selectedStation.getStation_id(),selectedStation.getPlace_name(),price,transaction_mode,"Paid",duration);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        String newDate = (formatter.format(date));
+
+        bookingModel = new BookingModel(randomPIN,loggedUserMbNo, newDate,"",start_time,end_time,vehicle_type,
+                selectedStation.getStation_id(),selectedStation.getPlace_name(),price,transaction_mode,"Upcoming",duration,unit_con);
+
         String id = databaseReference.push().getKey();
 
         if (currentUid != null){
 
-            databaseReference.child(currentUid).child(id).setValue(bookingModel).addOnCompleteListener(it->{
+            databaseReference.child(id).setValue(bookingModel).addOnCompleteListener(it->{
                 if (it.isSuccessful()){
-                    Toast.makeText(this,"Booking Confirmed", Toast.LENGTH_SHORT).show();
+                    hostBooking = firebaseDatabase.getReference("hostSideBooking");
+                    double total_amount = Double.parseDouble(bookingModel.getAmount_paid());
+                    HostSideBooking hostSide = new HostSideBooking(loggedUserMbNo,String.valueOf(total_amount),loggedUserMbNo,unit_con,"","");
+
+                    hostBooking.child(bookingModel.getStation_id()).child(id).setValue(hostSide).addOnCompleteListener(it1->{
+                        if (it1.isSuccessful()){
+                        }else{
+                            Toast.makeText(this,"Something Went Wrong", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    Intent i;
+                    i = new Intent(this, BookingConfirmationActivity.class);
+                    i.putExtra("station",selectedStation);
+                    startActivity(i);
                 }else{
                     Toast.makeText(this,"Something Went Wrong", Toast.LENGTH_SHORT).show();
                 }

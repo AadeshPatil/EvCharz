@@ -11,7 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 
     <application
@@ -21,6 +22,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".Pages.HostRegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Pages.HostViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Pages.BookingConfirmationActivity"
+            android:exported="false" />
         <activity
             android:name=".Pages.AboutUsActivity"
             android:exported="false" />

@@ -52,7 +52,7 @@ public class UserProfile extends AppCompatActivity {
 
         setContentView(R.layout.activity_user_profile);
 
-        ImageButton ib = findViewById(R.id.backBtn);
+        ImageButton backBtn = this.findViewById(R.id.backBtn);
 
         ImageButton profile_pic = findViewById(R.id.btn_upload_profile_pic);
          txt_name = findViewById(R.id.eTextUserName);
@@ -69,12 +69,7 @@ public class UserProfile extends AppCompatActivity {
 
         profile_pic.setOnClickListener(v-> SelectImage());
 
-        ib.setOnClickListener(v -> {
-            Intent i ;
-            i = new Intent(UserProfile.this, HomeActivity.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(i);
-        });
+        backBtn.setOnClickListener(v -> finish());
 
 
 
@@ -160,8 +155,6 @@ public class UserProfile extends AppCompatActivity {
                 txt_phone_no.setText(userModel.getMobileNo());
                 txt_name.setText(userModel.getName());
                 txt_email.setText(userModel.getEmailId());
-
-
                 txt_phone_no.setEnabled(false);
             }
 

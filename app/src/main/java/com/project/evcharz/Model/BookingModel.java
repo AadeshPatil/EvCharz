@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class BookingModel implements Serializable {
 
     long booking_id;
+    String user_mb_no;
     String date;
     String booking_time;
     String start_time;
@@ -16,23 +17,14 @@ public class BookingModel implements Serializable {
     String transaction_mode;
     String status;
     String duration;
+    String unit_consumption;
 
-    public BookingModel(long booking_id, String date, String booking_time, String start_time, String end_time, String vehicle_type, String station_id, String station_name, String amount_paid, String transaction_mode, String status, String duration) {
-        this.booking_id = booking_id;
-        this.date = date;
-        this.booking_time = booking_time;
-        this.start_time = start_time;
-        this.end_time = end_time;
-        this.vehicle_type = vehicle_type;
-        this.station_id = station_id;
-        this.station_name = station_name;
-        this.amount_paid = amount_paid;
-        this.transaction_mode = transaction_mode;
-        this.status = status;
-        this.duration = duration;
+    public String getUser_mb_no() {
+        return user_mb_no;
     }
 
-    public BookingModel() {
+    public void setUser_mb_no(String user_mb_no) {
+        this.user_mb_no = user_mb_no;
     }
 
     public long getBooking_id() {
@@ -131,6 +123,32 @@ public class BookingModel implements Serializable {
         this.duration = duration;
     }
 
+    public String getUnit_consumption() {
+        return unit_consumption;
+    }
+
+    public void setUnit_consumption(String unit_consumption) {
+        this.unit_consumption = unit_consumption;
+    }
 
 
+    public BookingModel(long booking_id, String user_mb_no, String date, String booking_time, String start_time, String end_time, String vehicle_type, String station_id, String station_name, String amount_paid, String transaction_mode, String status, String duration, String unit_consumption) {
+        this.booking_id = booking_id;
+        this.user_mb_no = user_mb_no;
+        this.date = date;
+        this.booking_time = booking_time;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.vehicle_type = vehicle_type;
+        this.station_id = station_id;
+        this.station_name = station_name;
+        this.amount_paid = amount_paid;
+        this.transaction_mode = transaction_mode;
+        this.status = status;
+        this.duration = duration;
+        this.unit_consumption = unit_consumption;
+    }
+
+    public BookingModel() {
+    }
 }

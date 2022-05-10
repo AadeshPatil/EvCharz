@@ -2,17 +2,16 @@ package com.project.evcharz.Pages;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.project.evcharz.MainActivity;
 import com.project.evcharz.Model.PlaceModel;
 import com.project.evcharz.R;
 import java.io.Serializable;
@@ -37,9 +36,12 @@ public class ViewDetails extends AppCompatActivity implements Serializable {
 
         TextView station_name = findViewById(R.id.txt_name_of_station);
 
-        TextView txt_address = findViewById(R.id.txt_address);
+        TextView txt_address = findViewById(R.id.addressOfStation);
         TextView txt_distance = findViewById(R.id.txt_distance);
-
+        ImageButton backBtn = findViewById(R.id.btn_back_home);
+        backBtn.setOnClickListener(v->{
+            finish();
+        });
 
         station_name.setText(selectedStation.getPlace_name());
         txt_address.setText(selectedStation.getAddress());
@@ -62,6 +64,10 @@ public class ViewDetails extends AppCompatActivity implements Serializable {
         distance=Math.floor(distance*100) / 100;
 
         txt_distance.setText(distance+" KM");
+
+        SharedPreferences.Editor editor = getSharedPreferences("distance", MODE_PRIVATE).edit();
+        editor.putString("distance_in_km", String.valueOf(distance));
+        editor.apply();
 
         ImageButton openMap = findViewById(R.id.locate_to_map);
         openMap.setOnClickListener(v->{

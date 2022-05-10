@@ -30,14 +30,16 @@
 
             <ImageView
                 android:id="@+id/imageView8"
-                android:layout_width="104dp"
-                android:layout_height="92dp"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="273dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="268dp"
+                android:layout_marginBottom="0dp"
                 app:srcCompat="@drawable/wallet_ic" />
 
             <TextView
@@ -47,24 +49,26 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="125dp"
-                android:layout_marginTop="26dp"
-                android:layout_marginEnd="148dp"
+                android:layout_marginStart="124dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="38dp"
                 android:text="Wallet Balance"
                 android:textColor="#BE000000"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView11"
-                android:layout_width="142dp"
-                android:layout_height="41dp"
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginStart="125dp"
                 android:layout_marginTop="59dp"
-                android:layout_marginEnd="156dp"
-                android:text="100 Coins"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="4dp"
+                android:text="00 Coins"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -84,8 +88,8 @@
         app:layout_constraintTop_toBottomOf="@+id/station_details"
         app:layout_constraintVertical_bias="0.023" />
 
-    <ImageView
-        android:id="@+id/imageView9"
+    <ImageButton
+        android:id="@+id/go_to_btn"
         android:layout_width="54dp"
         android:layout_height="47dp"
         app:layout_constraintBottom_toTopOf="@+id/station_details"
@@ -98,18 +102,33 @@
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="129dp"
-        android:layout_height="42dp"
-        android:textSize="25dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Wallet"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/station_details"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.036"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toEndOf="@+id/go_to_btn"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.508" />
+        app:layout_constraintVertical_bias="0.509" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:text="Wallet is currently not activated"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/station_details" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

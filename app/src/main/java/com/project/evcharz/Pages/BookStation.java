@@ -4,20 +4,29 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.project.evcharz.Model.BookingModel;
 import com.project.evcharz.Model.PlaceModel;
 import com.project.evcharz.R;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -25,16 +34,21 @@ public class BookStation extends AppCompatActivity {
     String SelectedTimeStart ,SelectedTimeEnd;
     String selectedTimeStartTimeFormat,selectedTimeEndTimeFormat;
     String selected_vehicle_type;
-
     PlaceModel selectedStation;
-
     double selected_vehicle_rate;
-
     double bike_unit = 1.348/4;
     double car_unit = 2.48/4;
     double auto_unit = 2.48/4;
-
     CheckBox bike,car,auto;
+
+
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    String isSlotAvailable = "false";
+
+
+    ArrayList<BookingModel> bookingList;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -46,6 +60,9 @@ public class BookStation extends AppCompatActivity {
 
         TextView start_time = findViewById(R.id.start_time);
         TextView end_time = findViewById(R.id.end_time);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("booking_details");
 
         TextView station_name = findViewById(R.id.station_name_booking);
         TextView timing = findViewById(R.id.timing_booking_page);
@@ -144,8 +161,9 @@ public class BookStation extends AppCompatActivity {
         });
 
         btn_payment.setOnClickListener(v->{
-            try {
 
+            try {
+                if (checkSlotAvailability()){
                 if ((SelectedTimeStart == null || SelectedTimeEnd == null)){
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setMessage("Please fill all the details");
@@ -181,6 +199,14 @@ public class BookStation extends AppCompatActivity {
                         instruction.setText("time slot is not in multiple of 15 minutes");
                     }
 
+                }
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("Slot Is Already Booked");
+                    builder.setCancelable(false);
+                    builder.setNegativeButton("Change Time", (dialog, which) -> dialog.cancel());
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -240,10 +266,70 @@ public class BookStation extends AppCompatActivity {
         Log.i("log_tag","Hours: "+hours+", Mins: "+min);
 
         if (hours != 0){
-            return hours* 60L;
+            return hours * 60L;
         }else{
             return min;
         }
+    }
+
+
+    private boolean checkSlotAvailability(){
+        bookingList = new ArrayList<>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    bookingList.clear();
+                    isSlotAvailable = "false";
+                    BookingModel i = postSnapshot.getValue(BookingModel.class);
+                    if (i.getStation_id() == selectedStation.getStation_id()) {
+                        bookingList.add(i);
+                    }
+                }
+                if (bookingList.isEmpty()) {
+                    isSlotAvailable = "true";
+                    return;
+                } else {
+                    bookingList.forEach(item -> {
+                        try {
+                            String string1 = item.getStart_time();
+                            Date time1 = new SimpleDateFormat("HH:mm:ss").parse(string1);
+                            Calendar calendar1 = Calendar.getInstance();
+                            calendar1.setTime(time1);
+                            calendar1.add(Calendar.DATE, 1);
+
+                            String string2 = item.getEnd_time();
+                            Date time2 = new SimpleDateFormat("HH:mm:ss").parse(string2);
+                            Calendar calendar2 = Calendar.getInstance();
+                            calendar2.setTime(time2);
+                            calendar2.add(Calendar.DATE, 1);
+
+                            String someRandomTime = SelectedTimeStart;
+                            Date d = new SimpleDateFormat("HH:mm:ss").parse(someRandomTime);
+                            Calendar calendar3 = Calendar.getInstance();
+                            calendar3.setTime(d);
+                            calendar3.add(Calendar.DATE, 1);
+
+                            Date x = calendar3.getTime();
+                            if (x.after(calendar1.getTime()) && x.before(calendar2.getTime())) {
+                                isSlotAvailable = "false";
+                            } else {
+                                isSlotAvailable = "true";
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
+            }
+        });
+        return Boolean.parseBoolean(isSlotAvailable);
     }
 
 }

@@ -8,6 +8,8 @@
     tools:openDrawer="start"
     android:fitsSystemWindows="true"
     tools:context=".Pages.HomeActivity">
+
+
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,16 +39,15 @@
 
 
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="269dp"
-            android:layout_height="57dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:background="@color/white"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
@@ -58,28 +59,20 @@
             app:navigationIcon="@drawable/menu"
             tools:ignore="MissingConstraints">
 
-            <EditText
-                android:id="@+id/search_location"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="Search"
-                android:textAlignment="center" />
-
-
-            <ImageView
-                android:id="@+id/imageView3"
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/idSearchView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:foregroundGravity="center"
-                app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-                app:layout_constraintEnd_toEndOf="@+id/toolbar"
-                app:layout_constraintHorizontal_bias="0.966"
-                app:layout_constraintStart_toStartOf="@+id/toolbar"
-                app:layout_constraintTop_toTopOf="@+id/toolbar"
-                app:layout_constraintVertical_bias="0.466"
-                app:srcCompat="?android:attr/actionModeWebSearchDrawable"
-                tools:ignore="MissingConstraints" />
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="11.4dp"
+                app:iconifiedByDefault="true"
+                android:animateLayoutChanges="true"
+                app:queryHint="Search Here"
+                app:queryBackground="@android:color/transparent"
+                app:searchHintIcon="@null"
+                android:layoutDirection="rtl"
+                android:layout_gravity="end"
+            />
 
 
         </androidx.appcompat.widget.Toolbar>

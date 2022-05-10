@@ -255,7 +255,7 @@
         android:id="@+id/instruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Instruction"
+        android:text=""
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/save_info"
         app:layout_constraintEnd_toEndOf="parent"

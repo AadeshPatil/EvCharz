@@ -3,10 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#6ADACDCD"
     android:layout_height="match_parent"
     tools:context=".Pages.MyBookingActivity">
 
 
+    <ImageButton
+        android:id="@+id/bck_btn"
+        android:layout_width="78dp"
+
+        android:layout_height="61dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.032"
+        app:srcCompat="?attr/homeAsUpIndicator" />
+
+    <TextView
+        android:id="@+id/lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Bookings"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toEndOf="@+id/bck_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_booking_list"
+        android:layout_width="wrap_content"
+        android:layout_height="704dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bck_btn"
+        app:layout_constraintVertical_bias="0.44"
+        tools:listitem="@layout/booking_card_layout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

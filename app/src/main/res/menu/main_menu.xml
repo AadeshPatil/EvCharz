@@ -12,17 +12,16 @@
         <item
             android:id="@+id/nav_booking"
             android:icon="@drawable/booking_icon"
-            android:title="Booking" />
+            android:title="Booking"
+
+
+            />
 
         <item
             android:id="@+id/nav_wallet"
             android:icon="@drawable/ic_baseline_account_balance_wallet_24"
             android:title="Wallet" />
 
-        <item
-            android:id="@+id/nav_vehicle"
-            android:icon="@drawable/vehicle_icon"
-            android:title="Vehicle Details" />
     </group>
     <group
         android:id="@+id/profile_menu"
@@ -38,6 +37,19 @@ android:icon="@drawable/logout_icon"
             android:title="Logout" />
 
     </group>
+
+    <group
+        android:id="@+id/host_view"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_host_view"
+            android:icon="@drawable/host_access_ico"
+            android:title="Host Access"
+            />
+
+    </group>
+
     <group
         android:id="@+id/about_comp"
         android:checkableBehavior="single">
@@ -52,5 +64,6 @@ android:icon="@drawable/logout_icon"
             android:title="About Us" />
 
     </group>
+
 
 </menu>

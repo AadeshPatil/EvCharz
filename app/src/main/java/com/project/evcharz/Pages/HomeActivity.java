@@ -2,11 +2,15 @@ package com.project.evcharz.Pages;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -18,7 +22,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -45,13 +50,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.project.evcharz.Model.BookingModel;
+import com.project.evcharz.MainActivity;
+import com.project.evcharz.Model.HostModel;
 import com.project.evcharz.Model.PlaceModel;
 import com.project.evcharz.R;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, Serializable {
     DrawerLayout drawerLayout;
@@ -60,6 +68,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     TextView textView;
     SupportMapFragment supportMapFragment;
 
+    SearchView search_box;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -69,11 +78,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     CardView station_details;
     ArrayList<Marker> markerList;
     BitmapDescriptor station_icon;
+    String loggedUserMbNo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        SharedPreferences sh = getSharedPreferences("LoginDetails", MODE_PRIVATE);
+        loggedUserMbNo = sh.getString("loggedUserMbNo", "");
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("chargingStationDetails");
@@ -96,10 +108,38 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
 
+        search_box = this.findViewById(R.id.idSearchView);
 
 //        google map
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.gMap);
-        assert supportMapFragment != null;
+
+
+        search_box.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                String location = search_box.getQuery().toString();
+                List<Address> addressList = null;
+
+                if (location != null || location.equals("")) {
+                    Geocoder geocoder = new Geocoder(getApplicationContext());
+                    try {
+                        addressList = geocoder.getFromLocationName(location, 1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Address address = addressList.get(0);
+                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+                    googleMap1.addMarker(new MarkerOptions().position(latLng).title(location));
+                    googleMap1.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                }
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         supportMapFragment.getMapAsync(this);
 
 
@@ -174,16 +214,63 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_booking:
-                Intent intent2 = new Intent(HomeActivity.this, BookingModel.class);
+                Intent intent2 = new Intent(HomeActivity.this, MyBookingActivity.class);
                 startActivity(intent2);
                 break;
+            case R.id.nav_wallet:
+                Intent intent3 = new Intent(HomeActivity.this, WalletActivity.class);
+                startActivity(intent3);
+                break;
             case R.id.nav_About_us:
-                Toast.makeText(this, "About Us", Toast.LENGTH_SHORT).show();
+                Intent intent4 = new Intent(HomeActivity.this, AboutUsActivity.class);
+                startActivity(intent4);
+                break;
+            case R.id.nav_host_view:
+                DatabaseReference hostRef = firebaseDatabase.getReference("hostUserList");
+                hostRef.child(loggedUserMbNo).get().addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Intent intent5 = new Intent(HomeActivity.this, HostRegisterActivity.class);
+                        startActivity(intent5);
+                    }
+                    else {
+                        HostModel hostModel = task.getResult().getValue(HostModel.class);
+                        Intent intent5;
+                        if (hostModel == null){
+                            intent5 = new Intent(HomeActivity.this, HostRegisterActivity.class);
+                        }else{
+                            intent5 = new Intent(HomeActivity.this, HostViewActivity.class);
+                        }
+                        startActivity(intent5);
+                    }
+                });
+                break;
+            case R.id.nav_Logout:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.setTitle("Logout!");
+                builder.setMessage("Are you sure you want to logout ?");
+
+                builder.setPositiveButton("YES", (dialog, which) -> {
+                    SharedPreferences.Editor editor = getSharedPreferences("LoginDetails", MODE_PRIVATE).edit();
+                    editor.putString("loggedUserMbNo", "");
+                    editor.apply();
+                    Intent i = new Intent(HomeActivity.this, MainActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
+                    dialog.dismiss();
+                });
+
+                builder.setNegativeButton("NO", (dialog, which) -> dialog.dismiss());
+                AlertDialog alert = builder.create();
+                alert.show();
+
+
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 
     @SuppressLint("SetTextI18n")
@@ -283,6 +370,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     return false;
                 });
             }
+
+
+
+
+            googleMap.setOnMapClickListener(v->{
+                station_details.setVisibility(View.GONE);
+            });
 
     }
 

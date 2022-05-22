@@ -1,7 +1,11 @@
 package com.project.evcharz.Pages;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +14,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,31 +29,24 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Button sendOtpBtn = findViewById(R.id.btn_sendOtp);
 
-         mAuth = FirebaseAuth.getInstance();
+        EditText phone_No = findViewById(R.id.txt_phoneNo);
 
-
-        Button sendOtpBtn = (Button) findViewById(R.id.btn_sendOtp);
-
-        EditText phone_No = (EditText) findViewById(R.id.txt_phoneNo);
-
-        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-
+        ProgressBar progressBar = findViewById(R.id.progressBar);
 
         sendOtpBtn.setOnClickListener(v -> {
-            if(phone_No.getText().length() != 10 && phone_No.getText() == null){
+            String num = phone_No.getText().toString();
+            if(num.length() != 10 || num == null){
                 Toast.makeText(this, "Please enter a valid Number", Toast.LENGTH_SHORT).show();
             }else {
                 progressBar.setVisibility(View.VISIBLE);
                 sendOtpBtn.setVisibility(View.INVISIBLE);
-
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(
                         "+91" + phone_No.getText().toString(),
                         60,
@@ -84,4 +84,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

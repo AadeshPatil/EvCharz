@@ -3,6 +3,7 @@ package com.project.evcharz.Pages;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -45,6 +46,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,12 +55,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.project.evcharz.MainActivity;
 import com.project.evcharz.Model.HostModel;
 import com.project.evcharz.Model.PlaceModel;
+import com.project.evcharz.Model.UserModel;
 import com.project.evcharz.R;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, Serializable {
@@ -78,17 +82,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     CardView station_details;
     ArrayList<Marker> markerList;
     BitmapDescriptor station_icon;
-    String loggedUserMbNo;
+    String loggedUserMbNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home);
 
         SharedPreferences sh = getSharedPreferences("LoginDetails", MODE_PRIVATE);
-        loggedUserMbNo = sh.getString("loggedUserMbNo", "");
+        loggedUserMbNumber = sh.getString("loggedUserMbNumber", "");
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("chargingStationDetails");
+        getLoggedInUserDetails();
         getAllChargingStation();
         // Menu Drawer
 
@@ -141,10 +147,36 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
         supportMapFragment.getMapAsync(this);
-
-
     }
 
+
+
+    private  void getLoggedInUserDetails(){
+        DatabaseReference userRef = firebaseDatabase.getReference("userDetails");
+        String currentUid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+
+        userRef.child(currentUid).get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.d("firebase", "Error getting data", task.getException());
+            }
+            else {
+                Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                UserModel userModel = task.getResult().getValue(UserModel.class);
+                if(userModel == null){
+                    AlertDialog alertDialog = new AlertDialog.Builder(HomeActivity.this).create();
+                    alertDialog.setTitle("Alert");
+                    alertDialog.setCanceledOnTouchOutside(false);
+                    alertDialog.setMessage("Please Complete the User Profile");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Update",
+                            (dialog, which) -> {
+                                Intent intent = new Intent(HomeActivity.this, UserProfile.class);
+                                startActivity(intent);
+                            });
+                    alertDialog.show();
+                }
+            }
+        });
+    }
 
     private void getAllChargingStation() {
         stationList = new ArrayList<>();
@@ -221,13 +253,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent3 = new Intent(HomeActivity.this, WalletActivity.class);
                 startActivity(intent3);
                 break;
-            case R.id.nav_About_us:
+            case R.id.nav_Inquiry:
                 Intent intent4 = new Intent(HomeActivity.this, AboutUsActivity.class);
                 startActivity(intent4);
                 break;
+
             case R.id.nav_host_view:
                 DatabaseReference hostRef = firebaseDatabase.getReference("hostUserList");
-                hostRef.child(loggedUserMbNo).get().addOnCompleteListener(task -> {
+                hostRef.child(loggedUserMbNumber).get().addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
                         Intent intent5 = new Intent(HomeActivity.this, HostRegisterActivity.class);
                         startActivity(intent5);
@@ -252,7 +285,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                 builder.setPositiveButton("YES", (dialog, which) -> {
                     SharedPreferences.Editor editor = getSharedPreferences("LoginDetails", MODE_PRIVATE).edit();
-                    editor.putString("loggedUserMbNo", "");
+                    editor.putString("loggedUserMbNumber", "");
                     editor.apply();
                     Intent i = new Intent(HomeActivity.this, MainActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);

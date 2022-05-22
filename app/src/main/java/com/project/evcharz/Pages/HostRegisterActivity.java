@@ -46,7 +46,7 @@ public class HostRegisterActivity extends AppCompatActivity implements OnMapRead
     FirebaseDatabase firebaseDatabase;
     DatabaseReference chargingStationRef,hostListRef;
     EditText address,station_name,unit_rate;
-    String loggedUserMbNo;
+    String loggedUserMbNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class HostRegisterActivity extends AppCompatActivity implements OnMapRead
 
         SharedPreferences sh = getSharedPreferences("LoginDetails", MODE_PRIVATE);
 
-        loggedUserMbNo = sh.getString("loggedUserMbNo", "");
+        loggedUserMbNumber = sh.getString("loggedUserMbNumber", "");
 
          latitude = this.findViewById(R.id.latitude);
          longitude = this.findViewById(R.id.longitude);
@@ -93,12 +93,12 @@ public class HostRegisterActivity extends AppCompatActivity implements OnMapRead
     }
 
     private void registerHost(PlaceModel placeModel) {
-        HostModel newHost = new HostModel(placeModel.getStation_id(),placeModel.getPlace_name(),loggedUserMbNo,
+        HostModel newHost = new HostModel(placeModel.getStation_id(),placeModel.getPlace_name(),loggedUserMbNumber,
                 placeModel.getStation_id());
 
         chargingStationRef.child(placeModel.getStation_id()).setValue(placeModel).addOnCompleteListener(it->{
             if (it.isSuccessful()){
-                hostListRef.child(loggedUserMbNo).setValue(newHost).addOnCompleteListener(it2->{
+                hostListRef.child(loggedUserMbNumber).setValue(newHost).addOnCompleteListener(it2->{
                     if (it.isSuccessful()){
                         Toast.makeText(this,"Congratulation You are Host now", Toast.LENGTH_SHORT).show();
                     }else{

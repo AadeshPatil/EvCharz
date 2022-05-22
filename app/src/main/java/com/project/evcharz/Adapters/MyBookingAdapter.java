@@ -1,14 +1,19 @@
 package com.project.evcharz.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.collection.LLRBNode;
 import com.project.evcharz.Model.BookingModel;
 import com.project.evcharz.R;
 
@@ -33,6 +38,7 @@ public class MyBookingAdapter extends RecyclerView.Adapter<MyBookingAdapter.View
         return new Viewholder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull MyBookingAdapter.Viewholder holder, int position) {
         // to set data to textview and imageview of each card layout
@@ -44,13 +50,17 @@ public class MyBookingAdapter extends RecyclerView.Adapter<MyBookingAdapter.View
         holder.station_name.setText("" + model.getStation_name());
         holder.amount_paid.setText("Rs. "+model.getAmount_paid());
         holder.status.setText(model.getStatus());
+//        holder.vehicle_type_icon.setImageResource(R.drawable.bike_marker);
 
+        if (model.getStatus().equals("Canceled")){
+            holder.status.setTextColor(Color.RED);
+        }
         if (model.getVehicle_type().equals("bike")){
-            holder.vehicle_type_icon.setImageResource(R.drawable.bike_marker);
+            holder.vehicle_type_icon.setImageResource(R.drawable.electric_bike);
         }else if(model.getVehicle_type().equals("car")) {
-            holder.vehicle_type_icon.setImageResource(R.drawable.car_icon);
+            holder.vehicle_type_icon.setImageResource(R.drawable.electric_car);
         }else {
-            holder.vehicle_type_icon.setImageResource(R.drawable.auto_icon);
+            holder.vehicle_type_icon.setImageResource(R.drawable.local_taxi);
         }
     }
 
@@ -59,7 +69,7 @@ public class MyBookingAdapter extends RecyclerView.Adapter<MyBookingAdapter.View
         return BookingModelArrayList.size();
     }
     
-    public class Viewholder extends RecyclerView.ViewHolder {
+    public static class Viewholder extends RecyclerView.ViewHolder {
         private final ImageView vehicle_type_icon;
         private final TextView booking_date_time;
         private final TextView station_name;

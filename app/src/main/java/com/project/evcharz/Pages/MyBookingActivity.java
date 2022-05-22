@@ -1,5 +1,6 @@
 package com.project.evcharz.Pages;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -26,6 +28,8 @@ import com.project.evcharz.Model.PlaceModel;
 import com.project.evcharz.Model.UserModel;
 import com.project.evcharz.R;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -38,7 +42,7 @@ public class MyBookingActivity extends AppCompatActivity {
     private RecyclerView myBookingRV;
     private ArrayList<BookingModel> myBookingModelArrayList = new ArrayList<>();
 
-    String loggedUserMbNo;
+    String loggedUserMbNumber;
 
 
     @Override
@@ -50,7 +54,7 @@ public class MyBookingActivity extends AppCompatActivity {
 
 
         SharedPreferences sh = getSharedPreferences("LoginDetails", MODE_PRIVATE);
-        String loggedUserMbNo = sh.getString("loggedUserMbNo", "");
+        String loggedUserMbNumber = sh.getString("loggedUserMbNumber", "");
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         currentUid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
@@ -65,8 +69,8 @@ public class MyBookingActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     BookingModel i = postSnapshot.getValue(BookingModel.class);
-                    if (i.getUser_mb_no().equals(loggedUserMbNo)){
-                        myBookingModelArrayList.add(i);
+                    if (i.getUser_mb_no().equals(loggedUserMbNumber)){
+                        myBookingModelArrayList.add(0,i);
                     }
                 }
                 MyBookingAdapter courseAdapter = new MyBookingAdapter(getApplicationContext(), myBookingModelArrayList);
@@ -83,6 +87,7 @@ public class MyBookingActivity extends AppCompatActivity {
 
 
     }
+
 
 
 }

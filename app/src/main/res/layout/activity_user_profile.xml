@@ -9,8 +9,9 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="413dp"
-        android:layout_height="90dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
         android:contentDescription="Ignore"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,15 +24,13 @@
 
     <ImageButton
         android:id="@+id/backBtn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.111"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.666"
         app:srcCompat="?attr/homeAsUpIndicator"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -46,10 +45,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.974"
+        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toEndOf="@+id/backBtn"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.619" />
+        app:layout_constraintVertical_bias="0.48" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -68,7 +67,7 @@
             android:layout_width="150dp"
             android:layout_height="161dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/main_logo" />
+            android:src="@drawable/userdp" />
 
     </androidx.cardview.widget.CardView>
 
@@ -86,7 +85,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.211"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/email_address"
@@ -140,6 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
+        android:visibility="gone"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/eTextUserName"
         app:layout_constraintEnd_toEndOf="parent"

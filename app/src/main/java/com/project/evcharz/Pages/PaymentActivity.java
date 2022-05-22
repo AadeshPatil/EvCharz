@@ -45,7 +45,8 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
     String currentUid;
 
     BookingModel bookingModel;
-    String loggedUserMbNo;
+    String loggedUserMbNumber;
+    int randomPIN;
     java.util.Date date2;
     String price,unit_con,duration,start_time,end_time,vehicle_type,transaction_mode;
 
@@ -56,8 +57,11 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+
+        randomPIN = (int)(Math.random()*9000)+1000;
+
         SharedPreferences sh = getSharedPreferences("LoginDetails", MODE_PRIVATE);
-        loggedUserMbNo = sh.getString("loggedUserMbNo", "");
+        loggedUserMbNumber = sh.getString("loggedUserMbNumber", "");
 
         price = getIntent().getStringExtra("price");
         unit_con = getIntent().getStringExtra("unit_con");
@@ -80,6 +84,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
 
         long millis = System.currentTimeMillis();
         date2 = new java.util.Date(millis);
+
 
 
         date.setText(String.valueOf(date2));
@@ -153,14 +158,11 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
 
 
     private void book_station() {
-
-        int randomPIN = (int)(Math.random()*9000)+1000;
         Date date = new Date();
-
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         String newDate = (formatter.format(date));
 
-        bookingModel = new BookingModel(randomPIN,loggedUserMbNo, newDate,"",start_time,end_time,vehicle_type,
+        bookingModel = new BookingModel(randomPIN,loggedUserMbNumber, newDate,"",start_time,end_time,vehicle_type,
                 selectedStation.getStation_id(),selectedStation.getPlace_name(),price,transaction_mode,"Upcoming",duration,unit_con);
 
         String id = databaseReference.push().getKey();
@@ -171,7 +173,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                 if (it.isSuccessful()){
                     hostBooking = firebaseDatabase.getReference("hostSideBooking");
                     double total_amount = Double.parseDouble(bookingModel.getAmount_paid());
-                    HostSideBooking hostSide = new HostSideBooking(loggedUserMbNo,String.valueOf(total_amount),loggedUserMbNo,unit_con,"","");
+                    HostSideBooking hostSide = new HostSideBooking(loggedUserMbNumber,String.valueOf(total_amount),loggedUserMbNumber,unit_con,"","");
 
                     hostBooking.child(bookingModel.getStation_id()).child(id).setValue(hostSide).addOnCompleteListener(it1->{
                         if (it1.isSuccessful()){
@@ -182,6 +184,10 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                     Intent i;
                     i = new Intent(this, BookingConfirmationActivity.class);
                     i.putExtra("station",selectedStation);
+                    i.putExtra("bookingID",randomPIN);
+                    i.putExtra("BookingIdMain",id);
+                    i.putExtra("bookingModel",bookingModel);
+
                     startActivity(i);
                 }else{
                     Toast.makeText(this,"Something Went Wrong", Toast.LENGTH_SHORT).show();

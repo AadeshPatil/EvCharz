@@ -55,13 +55,9 @@ android:icon="@drawable/logout_icon"
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_Inquiry"
-            android:icon="@drawable/inquiry_icon"
+            android:icon="@drawable/charz_icon"
             android:title="Inquiry" />
 
-        <item
-            android:id="@+id/nav_About_us"
-            android:icon="@drawable/charz_icon"
-            android:title="About Us" />
 
     </group>
 

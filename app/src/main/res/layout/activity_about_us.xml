@@ -31,7 +31,7 @@
         app:srcCompat="@drawable/reg_card" />
 
     <ImageView
-        android:id="@+id/imageView15"
+        android:id="@+id/launchWhatsapp"
         android:layout_width="125dp"
         android:layout_height="66dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -72,7 +72,7 @@
         app:layout_constraintVertical_bias="0.167" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/emailTxt"
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:text="aadeshpatil650@gmail.com"
@@ -92,15 +92,15 @@
         android:text="Phone"
         android:textAlignment="center"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView15"
+        app:layout_constraintBottom_toTopOf="@+id/launchWhatsapp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/emailTxt"
         app:layout_constraintVertical_bias="0.32" />
 
     <TextView
-        android:id="@+id/textView28"
+        android:id="@+id/mbNoTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="+91 9960776997"

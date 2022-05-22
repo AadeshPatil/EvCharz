@@ -71,9 +71,11 @@ public class ViewDetails extends AppCompatActivity implements Serializable {
 
         ImageButton openMap = findViewById(R.id.locate_to_map);
         openMap.setOnClickListener(v->{
-            String uri = String.format(Locale.ENGLISH, "geo:%f,%f", selectedStation.getLatitude(), selectedStation.getLongitude());
+//
+            String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?daddr=%f,%f (%s)", selectedStation.getLatitude(), selectedStation.getLongitude(), selectedStation.getPlace_name());
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-            this.startActivity(intent);
+            intent.setPackage("com.google.android.apps.maps");
+            startActivity(intent);
         });
 
         Button book_time = findViewById(R.id.book_slot);

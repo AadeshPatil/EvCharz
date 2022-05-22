@@ -3,6 +3,7 @@ package com.project.evcharz.Pages;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,12 +40,10 @@ public class UserProfile extends AppCompatActivity {
     DatabaseReference databaseReference;
 
     UserModel userModel;
-    StorageReference storageReference;
-    Context context;
-    private final int PICK_IMAGE_REQUEST = 22;
+
     String currentUid;
     EditText txt_name,txt_email,txt_phone_no;
-    private Uri filePath;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,22 +51,25 @@ public class UserProfile extends AppCompatActivity {
 
         setContentView(R.layout.activity_user_profile);
 
+        SharedPreferences sh = getSharedPreferences("LoginDetails", MODE_PRIVATE);
+        String loggedUserMbNumber = sh.getString("loggedUserMbNumber", "");
+
+
+
         ImageButton backBtn = this.findViewById(R.id.backBtn);
 
-        ImageButton profile_pic = findViewById(R.id.btn_upload_profile_pic);
          txt_name = findViewById(R.id.eTextUserName);
          txt_email = findViewById(R.id.email_address);
          txt_phone_no = findViewById(R.id.mb_no);
+         txt_phone_no.setText(loggedUserMbNumber);
+         txt_phone_no.setEnabled(false);
 
         Button updateBtn = findViewById(R.id.update_btn);
-
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("userDetails");
         currentUid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         getUserData();
-
-        profile_pic.setOnClickListener(v-> SelectImage());
 
         backBtn.setOnClickListener(v -> finish());
 
@@ -100,47 +102,6 @@ public class UserProfile extends AppCompatActivity {
 
     }
 
-    private void uploadPic(String filePath2) {
-            if (filePath2 != null) {
-                StorageReference ref = storageReference.child("profilePic/"+currentUid);
-                ref.putFile(filePath)
-                        .addOnSuccessListener(
-                                taskSnapshot -> Toast.makeText(this, "Profile  Uploaded!!", Toast.LENGTH_SHORT).show())
-                        .addOnFailureListener(e -> Toast.makeText(this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show());
-            }
-    }
-
-    private void SelectImage()
-    {
-        // Defining Implicit Intent to mobile gallery
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(
-                Intent.createChooser(
-                        intent,
-                        "Select Image from here..."),
-                PICK_IMAGE_REQUEST);
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST
-                && resultCode == RESULT_OK
-                && data != null
-                && data.getData() != null) {
-            filePath = data.getData();
-
-            String filePath2 = copyFileToInternalStorage(filePath,"temp");
-            System.out.println("Selectedfilepath "+filePath);
-//            uploadPic(filePath2);
-        }
-    }
-
-
 
     private void getUserData() {
 
@@ -151,59 +112,14 @@ public class UserProfile extends AppCompatActivity {
             else {
                 Log.d("firebase", String.valueOf(task.getResult().getValue()));
                 UserModel userModel = task.getResult().getValue(UserModel.class);
-
-                txt_phone_no.setText(userModel.getMobileNo());
-                txt_name.setText(userModel.getName());
-                txt_email.setText(userModel.getEmailId());
-                txt_phone_no.setEnabled(false);
+                if(userModel != null){
+                    txt_phone_no.setText(userModel.getMobileNo());
+                    txt_name.setText(userModel.getName());
+                    txt_email.setText(userModel.getEmailId());
+                    txt_phone_no.setEnabled(false);
+                }
             }
-
         });
     }
-
-
-    private String copyFileToInternalStorage(Uri uri,String newDirName) {
-
-        Cursor returnCursor = context.getContentResolver().query(uri, new String[]{
-                OpenableColumns.DISPLAY_NAME,OpenableColumns.SIZE
-        }, null, null, null);
-
-        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-        returnCursor.moveToFirst();
-        String name = (returnCursor.getString(nameIndex));
-
-        File output;
-        if(!newDirName.equals("")) {
-            File dir = new File(context.getFilesDir() + "/" + newDirName);
-            if (!dir.exists()) {
-                dir.mkdir();
-            }
-            output = new File(context.getFilesDir() + "/" + newDirName + "/" + name);
-        }
-        else{
-            output = new File(context.getFilesDir() + "/" + name);
-        }
-        try {
-            InputStream inputStream = context.getContentResolver().openInputStream(uri);
-            FileOutputStream outputStream = new FileOutputStream(output);
-            int read = 0;
-            int bufferSize = 1024;
-            final byte[] buffers = new byte[bufferSize];
-            while ((read = inputStream.read(buffers)) != -1) {
-                outputStream.write(buffers, 0, read);
-            }
-
-            inputStream.close();
-            outputStream.close();
-
-        }
-        catch (Exception e) {
-
-            Log.e("Exception", e.getMessage());
-        }
-
-        return output.getPath();
-    }
-
 
 }

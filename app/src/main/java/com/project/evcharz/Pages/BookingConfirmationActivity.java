@@ -1,17 +1,35 @@
 package com.project.evcharz.Pages;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.project.evcharz.Model.BookingModel;
+import com.project.evcharz.Model.HostSideBooking;
 import com.project.evcharz.Model.PlaceModel;
 import com.project.evcharz.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Objects;
 
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
@@ -20,21 +38,42 @@ import nl.dionsegijn.konfetti.models.Size;
 public class BookingConfirmationActivity extends AppCompatActivity {
 
     PlaceModel selectedStation;
+    BookingModel bookingObj;
 
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    String currentUid;
+    String price,id;
+    RelativeLayout rl;
+    TextView textCanceled;
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_confirmation);
 
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("booking_details");
+        currentUid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
+
+        price = getIntent().getStringExtra("price");
+        id = getIntent().getStringExtra("BookingIdMain");
         selectedStation = (PlaceModel) getIntent().getSerializableExtra("station");
-//        selectedStation = new PlaceModel("123",17.134324,19.134132,"adshaoh","10","4.9",null,"qwejrjwerh");
+        bookingObj = (BookingModel) getIntent().getSerializableExtra("bookingModel");
+
+
+//        selectedStation = new PlaceModel("123",17.134324,19.134132,"asha","10","4.9",null,"queerer");
+//        bookingID = "12344";
 
         showCelebration();
         TextView station_name = this.findViewById(R.id.nameOfStation);
         TextView distance = this.findViewById(R.id.distanceFromLoc);
         TextView address = this.findViewById(R.id.addressOfStation);
 
+         textCanceled = findViewById(R.id.textView16);
+         rl = findViewById(R.id.confirmationID);
 
 
         SharedPreferences prefs = getSharedPreferences("distance", MODE_PRIVATE);
@@ -54,7 +93,73 @@ public class BookingConfirmationActivity extends AppCompatActivity {
         });
 
 
+        Button openMap = this.findViewById(R.id.btn_map);
+        Button getSupport = this.findViewById(R.id.btn_suport);
+        Button btn_cancle = this.findViewById(R.id.btn_cancle);
+
+        openMap.setOnClickListener(v->{
+            String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?daddr=%f,%f (%s)", selectedStation.getLatitude(), selectedStation.getLongitude(), selectedStation.getPlace_name());
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+            intent.setPackage("com.google.android.apps.maps");
+            startActivity(intent);
+        });
+
+
+        getSupport.setOnClickListener(v->{
+            String number = "+91 9960776997";
+            String url = "https://api.whatsapp.com/send?phone="+number;
+
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.putExtra(Intent.EXTRA_TEXT, "");
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        });
+
+
+
+
+        btn_cancle.setOnClickListener(v->{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setTitle("Confirm");
+            builder.setMessage("Are you sure You want to cancel Your Booking?");
+
+            builder.setPositiveButton("YES", (dialog, which) -> {
+               cancelBooking();
+            });
+
+            builder.setNegativeButton("NO", (dialog, which) -> {
+                dialog.dismiss();
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        });
+
+
     }
+
+    public void cancelBooking(){
+        if (currentUid != null){
+            bookingObj.setStatus("Canceled");
+
+            Log.d("bookingModel",bookingObj.getStatus());
+            databaseReference.child(id).setValue(bookingObj).addOnCompleteListener(it->{
+                if(it.isSuccessful()){
+
+                    rl.setBackgroundColor(Color.RED);
+                    textCanceled.setText("Your Booking Is canceled");
+
+                    Toast.makeText(this,"Booking Canceled", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(this,"Something Went Wrong", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+    }
+
 
     public void showCelebration(){
 

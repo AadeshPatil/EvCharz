@@ -45,7 +45,7 @@ public class BookStation extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    String isSlotAvailable = "false";
+    String isSlotAvailable = "";
 
 
     ArrayList<BookingModel> bookingList;
@@ -68,10 +68,17 @@ public class BookStation extends AppCompatActivity {
         TextView timing = findViewById(R.id.timing_booking_page);
 
         TextView instruction = findViewById(R.id.instruction);
+        TextView current_date_time = this.findViewById(R.id.current_date_time);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String formatted = df.format(new Date());
+
+        current_date_time.setText(formatted);
 
         //set value
         station_name.setText(selectedStation.getPlace_name());
         timing.setText( "Rs "+selectedStation.getUnit_rate()+" Per Unit");
+
 
         Button btn_payment = findViewById(R.id.save_info);
 
@@ -163,43 +170,44 @@ public class BookStation extends AppCompatActivity {
         btn_payment.setOnClickListener(v->{
 
             try {
-                if (checkSlotAvailability()){
-                if ((SelectedTimeStart == null || SelectedTimeEnd == null)){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setMessage("Please fill all the details");
-                    builder.setCancelable(false);
-                    builder.setNegativeButton("Retry", (dialog, which) -> dialog.cancel());
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                }else{
-                    double time_period = checkDuration();
-                    Log.d("time_period", String.valueOf(time_period));
-
-                    if (time_period % 15 == 0){
-                        double  price;
-                        try {
-                            price = checkPrice();
-                            if (price > 0){
-                                Intent i = new Intent(this,PaymentActivity.class);
-                                i.putExtra("price",new DecimalFormat("##.##").format(price));
-                                i.putExtra("StationModel",selectedStation);
-                                i.putExtra("start_time",selectedTimeStartTimeFormat);
-                                i.putExtra("end_time",selectedTimeEndTimeFormat);
-                                i.putExtra("vehicle_type",selected_vehicle_type);
-                                i.putExtra("unit_con",String.valueOf(selected_vehicle_rate));
-                                i.putExtra("duration",new DecimalFormat("##").format(time_period));
-                                startActivity(i);
-                            }else{
-                                instruction.setText("error is in timeSlot");
-                            }
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
+                Boolean result = checkSlotAvailability();
+                if (result == true){
+                    if ((SelectedTimeStart == null || SelectedTimeEnd == null)){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setMessage("Please fill all the details");
+                        builder.setCancelable(false);
+                        builder.setNegativeButton("Retry", (dialog, which) -> dialog.cancel());
+                        AlertDialog alert = builder.create();
+                        alert.show();
                     }else{
-                        instruction.setText("time slot is not in multiple of 15 minutes");
-                    }
+                        double time_period = checkDuration();
+                        Log.d("time_period", String.valueOf(time_period));
 
-                }
+                        if (time_period % 15 == 0){
+                            double  price;
+                            try {
+                                price = checkPrice();
+                                if (price > 0){
+                                    Intent i = new Intent(this,PaymentActivity.class);
+                                    i.putExtra("price",new DecimalFormat("##.##").format(price));
+                                    i.putExtra("StationModel",selectedStation);
+                                    i.putExtra("start_time",selectedTimeStartTimeFormat);
+                                    i.putExtra("end_time",selectedTimeEndTimeFormat);
+                                    i.putExtra("vehicle_type",selected_vehicle_type);
+                                    i.putExtra("unit_con",String.valueOf(selected_vehicle_rate));
+                                    i.putExtra("duration",new DecimalFormat("##").format(time_period));
+                                    startActivity(i);
+                                }else{
+                                    instruction.setText("error is in timeSlot");
+                                }
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            instruction.setText("time slot is not in multiple of 15 minutes");
+                        }
+
+                    }
                 }else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setMessage("Slot Is Already Booked");
@@ -289,7 +297,7 @@ public class BookStation extends AppCompatActivity {
                 }
                 if (bookingList.isEmpty()) {
                     isSlotAvailable = "true";
-                    return;
+
                 } else {
                     bookingList.forEach(item -> {
                         try {

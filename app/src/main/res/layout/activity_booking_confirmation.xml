@@ -52,6 +52,7 @@
         app:layout_constraintVertical_bias="0.108">
 
         <RelativeLayout
+            android:id="@+id/confirmationID"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#07500A">
@@ -217,45 +218,46 @@
 
     <Button
         android:id="@+id/btn_cancle"
-        android:layout_width="143dp"
-        android:layout_height="53dp"
+        android:layout_width="279dp"
+        android:layout_height="48dp"
         android:background="#F44336"
         android:text="Cancle Booking"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addressOfStation"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.456" />
 
     <Button
         android:id="@+id/btn_map"
         android:layout_width="138dp"
         android:layout_height="50dp"
-        android:background="#2196F3"
+        android:background="#07500A"
         android:text="Direction"
-        android:textColor="#212121"
+        android:textColor="@color/white"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_cancle"
-        app:layout_constraintHorizontal_bias="0.337"
+        app:layout_constraintEnd_toStartOf="@+id/btn_suport"
+        app:layout_constraintHorizontal_bias="0.626"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addressOfStation"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.216" />
 
     <Button
         android:id="@+id/btn_suport"
-        android:layout_width="275dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="64dp"
-        android:background="@color/teal_200"
+        android:layout_width="139dp"
+        android:layout_height="53dp"
+        android:background="#07500A"
         android:text="Customer_care"
+
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_map"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/addressOfStation"
+        app:layout_constraintVertical_bias="0.213" />
 
     <ImageButton
         android:id="@+id/back_btn_booking_details"

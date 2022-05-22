@@ -6,33 +6,35 @@
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/booking_icon.xml" value="0.1415" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/border_textview.xml" value="0.2465" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/charz_icon.xml" value="0.2205" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/electric_bike.xml" value="0.1555" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/home.xml" value="0.1605" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.251" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/ic_baseline_lens_24.xml" value="0.251" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/reg_card.xml" value="0.1605" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/drawable/side_nav_bar.xml" value="0.176" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_about_us.xml" value="0.20521590423257802" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_about_us.xml" value="0.4" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_book_staion.xml" value="0.264" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_booking.xml" value="0.536" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_booking_confirmation.xml" value="0.152" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_booking_confirmation.xml" value="0.264" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_cancle_booking_slot.xml" value="0.264" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_charg_station_add.xml" value="0.20521590423257802" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_home.xml" value="0.2" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_host_register.xml" value="0.264" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_host_register.xml" value="0.152" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_host_view.xml" value="0.264" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_maps.xml" value="0.20521590423257802" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_menu.xml" value="0.264" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_my_booking.xml" value="0.20521590423257802" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_otp_validation.xml" value="0.25" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_my_booking.xml" value="0.4" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_otp_validation.xml" value="0.536" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_payment.xml" value="0.4" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_register_user.xml" value="0.2" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_user_profile.xml" value="0.47332185886402756" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_view_details.xml" value="0.264" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_splash_screen.xml" value="0.264" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_user_profile.xml" value="0.2" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_view_details.xml" value="0.4" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/activity_wallet.xml" value="0.4" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/app_bar_menu.xml" value="0.25" />
-        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/booking_card_layout.xml" value="0.6" />
+        <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/booking_card_layout.xml" value="0.4" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/content_menu.xml" value="0.2" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/fragment_gallery.xml" value="0.25" />
         <entry key="..\:/6th Sem/Project/Code/EvCharz/app/src/main/res/layout/fragment_home.xml" value="0.20521590423257802" />

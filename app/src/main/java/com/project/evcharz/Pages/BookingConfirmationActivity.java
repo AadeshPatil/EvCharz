@@ -2,7 +2,6 @@ package com.project.evcharz.Pages;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -15,22 +14,15 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.project.evcharz.Model.BookingModel;
-import com.project.evcharz.Model.HostSideBooking;
 import com.project.evcharz.Model.PlaceModel;
 import com.project.evcharz.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
-
 import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
 import nl.dionsegijn.konfetti.models.Size;
@@ -146,21 +138,15 @@ public class BookingConfirmationActivity extends AppCompatActivity {
             Log.d("bookingModel",bookingObj.getStatus());
             databaseReference.child(id).setValue(bookingObj).addOnCompleteListener(it->{
                 if(it.isSuccessful()){
-
                     rl.setBackgroundColor(Color.RED);
                     textCanceled.setText("Your Booking Is canceled");
-
                     Toast.makeText(this,"Booking Canceled", Toast.LENGTH_SHORT).show();
-
                 }else{
                     Toast.makeText(this,"Something Went Wrong", Toast.LENGTH_SHORT).show();
                 }
             });
         }
-
     }
-
-
     public void showCelebration(){
 
         DisplayMetrics display = new DisplayMetrics();

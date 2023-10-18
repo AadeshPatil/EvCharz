@@ -1,21 +1,13 @@
 package com.project.evcharz.Pages;
 
-import androidx.annotation.RequiresApi;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageButton;
-
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,12 +16,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.project.evcharz.Adapters.MyBookingAdapter;
 import com.project.evcharz.Model.BookingModel;
-import com.project.evcharz.Model.PlaceModel;
-import com.project.evcharz.Model.UserModel;
 import com.project.evcharz.R;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -40,7 +28,7 @@ public class MyBookingActivity extends AppCompatActivity {
     String currentUid;
 
     private RecyclerView myBookingRV;
-    private ArrayList<BookingModel> myBookingModelArrayList = new ArrayList<>();
+    private final ArrayList<BookingModel> myBookingModelArrayList = new ArrayList<>();
 
     String loggedUserMbNumber;
 

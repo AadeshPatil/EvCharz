@@ -127,22 +127,22 @@ public class HostRegisterActivity extends AppCompatActivity implements OnMapRead
         } else {
             googleMap.setMyLocationEnabled(true);
             googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+////
+//            double latitude = 0;
+//            double longitude = 0;
+//
+//            Location location = locationManager.getLastKnownLocation(provider);
+//            if (location != null) {
+//                Log.e("TAG", "GPS is on");
+//                latitude = location.getLatitude();
+//                longitude = location.getLongitude();
+//
+//            }
+//            else{
+//                locationManager.requestLocationUpdates(provider, 1000, 0, (LocationListener) this);
+//            }
 
-            double latitude = 0;
-            double longitude = 0;
-
-            Location location = locationManager.getLastKnownLocation(provider);
-            if (location != null) {
-                Log.e("TAG", "GPS is on");
-                latitude = location.getLatitude();
-                longitude = location.getLongitude();
-
-            }
-            else{
-                locationManager.requestLocationUpdates(provider, 1000, 0, (LocationListener) this);
-            }
-
-            LatLng currentLocation = new LatLng(latitude, longitude);
+            LatLng currentLocation = new LatLng(18.6454538, 73.7908715);
             googleMap.moveCamera(
                     CameraUpdateFactory.newLatLngZoom(currentLocation, 14.0f));
 

@@ -1,5 +1,6 @@
 package com.project.evcharz.Adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -45,10 +46,11 @@ public class MyBookingAdapter extends RecyclerView.Adapter<MyBookingAdapter.View
         BookingModel model = BookingModelArrayList.get(position);
 
 
+        String dateTimeRange = model.getDate() + " | " + model.getStart_time() + "-" + model.getEnd_time();
+        holder.booking_date_time.setText(dateTimeRange);
+        holder.station_name.setText(model.getStation_name());
+        holder.amount_paid.setText("Rs. " + model.getAmount_paid());
 
-        holder.booking_date_time.setText(model.getDate() + " | "+ model.getStart_time() +"-"+model.getEnd_time());
-        holder.station_name.setText("" + model.getStation_name());
-        holder.amount_paid.setText("Rs. "+model.getAmount_paid());
         holder.status.setText(model.getStatus());
 //        holder.vehicle_type_icon.setImageResource(R.drawable.bike_marker);
 

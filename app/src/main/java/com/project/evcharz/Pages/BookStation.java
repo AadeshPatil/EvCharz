@@ -50,7 +50,6 @@ public class BookStation extends AppCompatActivity {
 
     ArrayList<BookingModel> bookingList;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,9 +112,6 @@ public class BookStation extends AppCompatActivity {
             TimePickerDialog mTimePicker;
             mTimePicker = new TimePickerDialog(this, (timePicker, selectedHour, selectedMinute) -> {
                 String min = selectedMinute+"";
-
-
-
                 if(min.trim().length() == 1){
                     min = 0 + ""+ min;
                 }
@@ -228,9 +224,6 @@ public class BookStation extends AppCompatActivity {
     }
 
     private double checkPrice() throws ParseException {
-
-
-
         double time_period = checkDuration();
 
         if(bike.isChecked()){

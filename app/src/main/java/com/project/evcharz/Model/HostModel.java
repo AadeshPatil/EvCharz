@@ -46,7 +46,7 @@ public class HostModel {
         this.mobile_number = mobile_number;
         this.station_id = station_id;
     }
-    public HostModel(){};
+    public HostModel(){}
 
 
 }

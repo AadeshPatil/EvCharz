@@ -72,13 +72,15 @@
         android:layout_marginBottom="192dp"
         android:background="@drawable/btn_bg"
         android:text="Send OTP"
+        android:enabled="true"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.218"
+        tools:ignore="UnknownId" />
 
     <TextView
         android:id="@+id/textView3"

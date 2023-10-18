@@ -3,7 +3,6 @@ package com.project.evcharz.Pages;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -13,7 +12,6 @@ import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,18 +22,16 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.SearchView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -63,7 +59,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, Serializable {
     DrawerLayout drawerLayout;
@@ -88,6 +83,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
+//        google map
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.gMap);
+        assert supportMapFragment != null;
+        supportMapFragment.getMapAsync(this);
 
         SharedPreferences sh = getSharedPreferences("LoginDetails", MODE_PRIVATE);
         loggedUserMbNumber = sh.getString("loggedUserMbNumber", "");
@@ -116,8 +115,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         search_box = this.findViewById(R.id.idSearchView);
 
-//        google map
-        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.gMap);
 
 
         search_box.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -126,19 +123,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 String location = search_box.getQuery().toString();
                 List<Address> addressList = null;
 
-                if (location != null || location.equals("")) {
-                    Geocoder geocoder = new Geocoder(getApplicationContext());
-                    try {
-                        addressList = geocoder.getFromLocationName(location, 1);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Address address = addressList.get(0);
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-
-                    googleMap1.addMarker(new MarkerOptions().position(latLng).title(location));
-                    googleMap1.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                Geocoder geocoder = new Geocoder(getApplicationContext());
+                try {
+                    addressList = geocoder.getFromLocationName(location, 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+                assert addressList != null;
+                Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+                googleMap1.addMarker(new MarkerOptions().position(latLng).title(location));
+                googleMap1.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
                 return false;
             }
             @Override
@@ -146,7 +142,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 return false;
             }
         });
-        supportMapFragment.getMapAsync(this);
+
     }
 
 
@@ -216,7 +212,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getMessage());
             }
         });
@@ -305,7 +301,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -333,12 +328,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     Log.e("TAG", "GPS is on");
                     latitude = location.getLatitude();
                     longitude = location.getLongitude();
-
                 }
+
                 else{
-                    locationManager.requestLocationUpdates(provider, 1000, 0, (LocationListener) this);
+                    locationManager.requestLocationUpdates(provider, 1000, 0, (android.location.LocationListener) this);
                 }
-
                 LatLng currentLocation = new LatLng(latitude, longitude);
 
                 MarkerOptions markerOptions = new MarkerOptions();
@@ -404,13 +398,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 });
             }
 
-
-
-
             googleMap.setOnMapClickListener(v->{
                 station_details.setVisibility(View.GONE);
             });
 
     }
-
     }

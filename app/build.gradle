@@ -8,9 +8,6 @@ plugins {
 android {
     compileSdk 31
 
-    aaptOptions {
-        cruncherEnabled = false
-    }
     defaultConfig {
         applicationId "com.project.evcharz"
         minSdk 21
@@ -35,6 +32,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.project.evcharz'
 
 
 }
@@ -52,6 +50,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.4.1'
     implementation 'com.google.firebase:firebase-database:19.2.1'
     implementation 'com.google.firebase:firebase-storage:20.0.1'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
     testImplementation 'junit:junit:4.13.2'
     //noinspection GradleCompatible
     implementation "androidx.constraintlayout:constraintlayout:2.1.0"

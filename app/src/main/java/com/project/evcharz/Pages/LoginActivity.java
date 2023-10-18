@@ -1,10 +1,6 @@
 package com.project.evcharz.Pages;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
-
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -16,11 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.project.evcharz.R;
@@ -42,11 +35,12 @@ public class LoginActivity extends AppCompatActivity {
 
         sendOtpBtn.setOnClickListener(v -> {
             String num = phone_No.getText().toString();
-            if(num.length() != 10 || num == null){
+            if(num.length() != 10){
                 Toast.makeText(this, "Please enter a valid Number", Toast.LENGTH_SHORT).show();
             }else {
                 progressBar.setVisibility(View.VISIBLE);
-                sendOtpBtn.setVisibility(View.INVISIBLE);
+                sendOtpBtn.setEnabled(false);
+
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(
                         "+91" + phone_No.getText().toString(),
                         60,
@@ -56,13 +50,13 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                                 progressBar.setVisibility(View.GONE);
-                                sendOtpBtn.setVisibility(View.VISIBLE);
+                                sendOtpBtn.setEnabled(true);
                             }
 
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
                                 progressBar.setVisibility(View.GONE);
-                                sendOtpBtn.setVisibility(View.VISIBLE);
+                                sendOtpBtn.setEnabled(true);
                                 System.out.println("error in otp "+e.getMessage());
                                 Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
@@ -71,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onCodeSent(@NonNull String backend_otp, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 super.onCodeSent(backend_otp, forceResendingToken);
+                                progressBar.setVisibility(View.GONE);
+                                sendOtpBtn.setEnabled(true);
 
                                 Intent i = new Intent(LoginActivity.this, OtpValidation.class);
                                 i.putExtra("phoneNo", phone_No.getText().toString());

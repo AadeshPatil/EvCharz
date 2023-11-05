@@ -64,11 +64,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    TextView textView;
     SupportMapFragment supportMapFragment;
-
     SearchView search_box;
-
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     List<PlaceModel> stationList;
@@ -99,9 +96,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-        textView = findViewById(R.id.textView);
         toolbar = findViewById(R.id.toolbar);
-
 
         station_details = findViewById(R.id.station_details);
         station_details.setVisibility(View.GONE);
@@ -114,8 +109,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(R.id.nav_home);
 
         search_box = this.findViewById(R.id.idSearchView);
-
-
 
         search_box.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -301,7 +294,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {

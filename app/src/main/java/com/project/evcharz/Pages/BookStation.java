@@ -216,9 +216,6 @@ public class BookStation extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-
-
-
         });
         findViewById(R.id.backBtn_booking).setOnClickListener(v-> finish());
     }
@@ -239,9 +236,7 @@ public class BookStation extends AppCompatActivity {
 
         Log.d("unit_rate",selectedStation.getUnit_rate());
         double unit_rate = Double.parseDouble(selectedStation.getUnit_rate());
-
-        double rate =  selected_vehicle_rate*unit_rate;
-        return rate;
+        return selected_vehicle_rate*unit_rate;
     }
 
     private long checkDuration() throws ParseException {
@@ -258,7 +253,6 @@ public class BookStation extends AppCompatActivity {
         {
             Date dateMax = simpleDateFormat.parse("24:00");
             Date dateMin = simpleDateFormat.parse("00:00");
-            assert dateMax != null;
             difference=(dateMax.getTime() -startDate.getTime() )+(endDate.getTime()-dateMin.getTime());
         }
         int days = (int) (difference / (1000*60*60*24));

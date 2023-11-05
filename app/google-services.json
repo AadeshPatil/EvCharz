@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "882612430853",
+    "firebase_url": "https://evgoo-e746d-default-rtdb.firebaseio.com",
     "project_id": "evgoo-e746d",
     "storage_bucket": "evgoo-e746d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:882612430853:android:50ce0eb1ca6ec7cce7146c",
+        "mobilesdk_app_id": "1:882612430853:android:2823e14e4cce2d9fe7146c",
         "android_client_info": {
           "package_name": "com.project.evcharz"
         }
@@ -20,7 +21,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAoUz8oM5mnPEYiODNdOMiy_1pnTHZG3tY"
+          "current_key": "AIzaSyBx358lKWvnPPTIk9xoqEuR1sC9cr4VzEs"
         }
       ],
       "services": {

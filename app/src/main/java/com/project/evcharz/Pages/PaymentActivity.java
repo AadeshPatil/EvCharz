@@ -119,7 +119,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
 
         double finalAmount = Float.parseFloat(price)*100;
 
-        co.setKeyID("rzp_test_gRpSX81brvUAyH");
+        co.setKeyID("rzp_test_EZMgtOhRl4mfvp");
 
 
         try {

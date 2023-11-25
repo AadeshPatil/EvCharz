@@ -98,7 +98,7 @@ public class BookingConfirmationActivity extends AppCompatActivity {
 
 
         getSupport.setOnClickListener(v->{
-            String number = "+91 9960776997";
+            String number = "+91 8275813393";
             String url = "https://api.whatsapp.com/send?phone="+number;
 
             Intent i = new Intent(Intent.ACTION_VIEW);

@@ -7,6 +7,7 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.FirebaseApp;
 import com.project.evcharz.MainActivity;
 import com.project.evcharz.R;
 
@@ -16,8 +17,6 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
-
         new Handler().postDelayed(() -> {
             Intent i = new Intent(SplashScreen.this, MainActivity.class);
             startActivity(i);

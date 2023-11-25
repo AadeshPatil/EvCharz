@@ -12,10 +12,10 @@
         android:layout_height="211dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.025"
         app:srcCompat="@drawable/main_icon" />
 
     <TextView
@@ -29,41 +29,41 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView13"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintVertical_bias="0.26" />
 
     <EditText
         android:id="@+id/stationName"
         android:layout_width="155dp"
         android:layout_height="47dp"
-        android:ems="10"
         android:background="@drawable/border_textview"
-        android:textAlignment="center"
+        android:ems="10"
         android:hint="Station Name"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintHorizontal_bias="0.155"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.059" />
 
     <EditText
         android:id="@+id/unit_rate"
         android:layout_width="137dp"
         android:layout_height="44dp"
         android:background="@drawable/border_textview"
-        android:textAlignment="center"
         android:hint="Unit Rate"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.293"
+        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toEndOf="@+id/stationName"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.064" />
 
     <EditText
         android:id="@+id/addresss"
@@ -76,10 +76,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stationName"
-        app:layout_constraintVertical_bias="0.031" />
+        app:layout_constraintVertical_bias="0.066" />
 
     <fragment
         android:id="@+id/map_for_location"
@@ -105,9 +105,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/map_for_location"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addresss"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintVertical_bias="0.142" />
 
     <EditText
         android:id="@+id/longitude"
@@ -120,10 +121,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/map_for_location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/latitude"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintVertical_bias="0.291" />
 
     <TextView
         android:id="@+id/textView20"
@@ -132,10 +133,10 @@
         android:text="Choose Station Location"
         app:layout_constraintBottom_toTopOf="@+id/map_for_location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/longitude"
-        app:layout_constraintVertical_bias="0.656" />
+        app:layout_constraintVertical_bias="0.72" />
 
     <Button
         android:id="@+id/btn_register"
@@ -159,7 +160,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/textView19"
         app:layout_constraintEnd_toEndOf="@+id/imageView13"
-        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="@+id/imageView13"
         app:layout_constraintTop_toTopOf="@+id/imageView13"
         app:layout_constraintVertical_bias="0.0"

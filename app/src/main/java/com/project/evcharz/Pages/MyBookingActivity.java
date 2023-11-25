@@ -30,9 +30,6 @@ public class MyBookingActivity extends AppCompatActivity {
     private RecyclerView myBookingRV;
     private final ArrayList<BookingModel> myBookingModelArrayList = new ArrayList<>();
 
-    String loggedUserMbNumber;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

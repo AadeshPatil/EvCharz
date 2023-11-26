@@ -24,62 +24,6 @@
         app:layout_constraintVertical_bias="0.103"
         tools:ignore="MissingConstraints">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:padding="8dp">
-
-
-            <TextView
-                android:id="@+id/station_name_booking"
-                android:layout_width="368dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="18dp"
-
-                android:layout_marginEnd="5dp"
-                android:fontFamily="@font/secularone_regular"
-                android:text="Apply Coupon"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:fontFamily="@font/secularone_regular" />
-
-            <EditText
-                android:id="@+id/coupon_code"
-                android:layout_width="222dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="11dp"
-                android:layout_marginTop="49dp"
-                android:layout_marginEnd="152dp"
-                android:ems="10"
-                android:hint="Enter Coupon Code"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="142dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="243dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="0dp"
-                android:background="@null"
-                android:text="Apply"
-                android:textColor="#072353" />
-
-        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -101,7 +45,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
+            android:background="#FDF1FF"
             android:padding="8dp">
 
 
@@ -119,7 +63,7 @@
                 android:layout_marginBottom="205dp"
                 android:text="Your Booking"
                 android:textAlignment="center"
-                android:textColor="#072EF6"
+                android:textColor="@color/dark_purple"
                 android:textStyle="bold" />
 
 
@@ -160,22 +104,22 @@
                 android:layout_marginTop="69dp"
                 android:layout_marginEnd="233dp"
                 android:layout_marginBottom="139dp"
-                android:text="Electricity Used" />
+                android:text="Rate Per Hour" />
 
             <TextView
                 android:id="@+id/duration"
-                android:layout_width="wrap_content"
-                android:layout_height="34dp"
+                android:layout_width="129dp"
+                android:layout_height="65dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
 
-                android:layout_marginStart="19dp"
+                android:layout_marginStart="21dp"
                 android:layout_marginTop="92dp"
                 android:layout_marginEnd="235dp"
-                android:layout_marginBottom="111dp"
-                android:text="Duration" />
+                android:layout_marginBottom="79dp"
+                android:text="Total Time" />
 
             <TextView
                 android:id="@+id/txt_date"
@@ -208,14 +152,14 @@
 
             <TextView
                 android:id="@+id/txt_duration"
-                android:layout_width="204dp"
-                android:layout_height="37dp"
+                android:layout_width="203dp"
+                android:layout_height="65dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="159dp"
                 android:layout_marginTop="96dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="23dp"
                 android:text="30 Mins"
                 android:textStyle="bold" />
 
@@ -247,17 +191,17 @@
             <TextView
                 android:id="@+id/total_price"
                 android:layout_width="207dp"
-                android:layout_height="34dp"
+                android:layout_height="53dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="165dp"
                 android:layout_marginTop="181dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="22dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginBottom="3dp"
                 android:text="Rs. 31.12"
-                android:textColor="#001AFD"
+                android:textColor="@color/dark_purple"
                 android:textStyle="bold" />
 
 
@@ -284,7 +228,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
+            android:background="#FDF1FF"
             android:padding="8dp">
 
 
@@ -301,19 +245,6 @@
                 android:layout_marginEnd="214dp"
                 android:text="Payment Modes" />
 
-            <CheckBox
-                android:id="@+id/checkBox_wallet"
-                android:layout_width="175dp"
-                android:enabled="false"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="204dp"
-                android:text="Wallet"
-                tools:ignore="TouchTargetSizeCheck" />
 
             <CheckBox
                 android:id="@+id/checkBox_online"
@@ -322,10 +253,11 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="81dp"
-                android:layout_marginEnd="85dp"
-                android:text="Online(Phone Pay,UPI)"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="47dp"
+                android:layout_marginEnd="87dp"
+                android:checked="true"
+                android:text="@string/online_upi_card_netbanking"
                 tools:ignore="TouchTargetSizeCheck" />
         </RelativeLayout>
 
@@ -336,7 +268,7 @@
         android:id="@+id/pay_method"
         android:layout_width="296dp"
         android:layout_height="51dp"
-        android:background="@drawable/btn_bg"
+        android:background="@color/dark_purple"
         android:text="PAY NOW"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -369,6 +301,16 @@
         app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.466" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="284dp"
+        android:layout_height="97dp"
+        android:text="Note: The pricing could be subject to adjustments in the event of a delay in returning the vehicle."
+        app:layout_constraintBottom_toTopOf="@+id/pay_method"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/payment_card" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

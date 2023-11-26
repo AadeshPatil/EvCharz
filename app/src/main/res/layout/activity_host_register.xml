@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Pages.HostRegisterActivity">
 
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="404dp"
-        android:layout_height="211dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/main_icon" />
 
     <TextView
         android:id="@+id/textView19"
@@ -29,41 +18,41 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView13"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.245" />
 
     <EditText
         android:id="@+id/stationName"
         android:layout_width="155dp"
         android:layout_height="47dp"
-        android:ems="10"
         android:background="@drawable/border_textview"
-        android:textAlignment="center"
+        android:ems="10"
         android:hint="Station Name"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintHorizontal_bias="0.265"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.057" />
 
     <EditText
         android:id="@+id/unit_rate"
-        android:layout_width="137dp"
-        android:layout_height="44dp"
+        android:layout_width="144dp"
+        android:layout_height="46dp"
         android:background="@drawable/border_textview"
-        android:textAlignment="center"
         android:hint="Unit Rate"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.293"
+        app:layout_constraintHorizontal_bias="0.227"
         app:layout_constraintStart_toEndOf="@+id/stationName"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.059" />
 
     <EditText
         android:id="@+id/addresss"
@@ -76,10 +65,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stationName"
-        app:layout_constraintVertical_bias="0.031" />
+        app:layout_constraintVertical_bias="0.053" />
 
     <fragment
         android:id="@+id/map_for_location"
@@ -105,9 +94,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/map_for_location"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addresss"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintVertical_bias="0.081" />
 
     <EditText
         android:id="@+id/longitude"
@@ -120,10 +110,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/map_for_location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/latitude"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintVertical_bias="0.192" />
 
     <TextView
         android:id="@+id/textView20"
@@ -132,10 +122,9 @@
         android:text="Choose Station Location"
         app:layout_constraintBottom_toTopOf="@+id/map_for_location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/longitude"
-        app:layout_constraintVertical_bias="0.656" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btn_register"
@@ -152,34 +141,5 @@
         app:layout_constraintTop_toBottomOf="@+id/map_for_location"
         app:layout_constraintVertical_bias="0.578" />
 
-    <ImageButton
-        android:id="@+id/btn_back_id"
-        android:layout_width="71dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView19"
-        app:layout_constraintEnd_toEndOf="@+id/imageView13"
-        app:layout_constraintHorizontal_bias="0.036"
-        app:layout_constraintStart_toStartOf="@+id/imageView13"
-        app:layout_constraintTop_toTopOf="@+id/imageView13"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="?attr/homeAsUpIndicator" />
-
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="135dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="184dp"
-        android:text="Become Host"
-        android:textColor="@color/black"
-        android:textSize="17dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView13"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/btn_back"
-        app:layout_constraintTop_toTopOf="@+id/imageView13" />
-    3"
-        app:layout_constraintTop_toTopOf="@+id/imageView13" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

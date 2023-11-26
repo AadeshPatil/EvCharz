@@ -1,37 +1,27 @@
 {
   "project_info": {
-    "project_number": "882612430853",
-    "firebase_url": "https://evgoo-e746d-default-rtdb.firebaseio.com",
-    "project_id": "evgoo-e746d",
-    "storage_bucket": "evgoo-e746d.appspot.com"
+    "project_number": "27213934182",
+    "firebase_url": "https://wheels-on-demand-23f45-default-rtdb.firebaseio.com",
+    "project_id": "wheels-on-demand-23f45",
+    "storage_bucket": "wheels-on-demand-23f45.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:882612430853:android:2823e14e4cce2d9fe7146c",
+        "mobilesdk_app_id": "1:27213934182:android:b0de1426aef3b6202347a7",
         "android_client_info": {
-          "package_name": "com.project.evcharz"
+          "package_name": "com.project.wheels_on_demand"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "882612430853-f1shu51aplr52kpt4nnuc8ethmr525qp.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBx358lKWvnPPTIk9xoqEuR1sC9cr4VzEs"
+          "current_key": "AIzaSyAzYMG7DI4eh9JhUzo037ghTHJH3y4LteU"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "882612430853-f1shu51aplr52kpt4nnuc8ethmr525qp.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

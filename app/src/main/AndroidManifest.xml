@@ -27,40 +27,40 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".Pages.CancleBookingSlotActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.HostRegisterActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.HostViewActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.BookingConfirmationActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.AboutUsActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.MyBookingActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.WalletActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.PaymentActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.BookStation"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.ViewDetails"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.ChargStationAdd"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.UserProfile"
-            android:exported="false" />
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -68,16 +68,16 @@
 
         <activity
             android:name=".Pages.HomeActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.OtpValidation"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.LoginActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Pages.SplashScreen"
             android:exported="true">
@@ -87,6 +87,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.razorpay.CheckoutActivity"
+            android:exported="true"
+            />
+        <receiver
+            android:name="com.razorpay.RzpTokenReceiver"
+            android:exported="true"
+            />
     </application>
 
 </manifest>

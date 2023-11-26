@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EvCharz</string>
+    <string name="app_name">WheelsOnDemand</string>
     <string name="reg_img">reg_img</string>
     <string name="homenavrbar">homenavrbar</string>
     <string name="title_activity_menu">MenuActivity</string>
@@ -13,9 +13,14 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="user_name">Aadesh Patil +919960776997</string>
+    <string name="user_name">Priya Paradhi +919145040590</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="ignore">ignore</string>
-    <string name="welcome_msg">Welcome Back Mr.Aadesh</string>
+    <string name="welcome_msg">Welcome Back miss. Priya</string>
     <string name="splashscreen">SplashScreen</string>
+    <string name="wheel_on_demand">Wheel On Demand</string>
+    <string name="verify">Verify</string>
+    <string name="didn_t_receive_otp">Didn’t receive OTP?</string>
+    <string name="book_now">Book Now</string>
+    <string name="online_upi_card_netbanking">Online(UPI,Card,NetBanking)</string>
 </resources>

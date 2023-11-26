@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Pages.OtpValidation">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="326dp"
-        android:layout_height="216dp"
-        android:contentDescription="ignore"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.066"
-        app:srcCompat="@drawable/otpimg" />
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -30,16 +16,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.519"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.257" />
 
     <TextView
         android:id="@+id/lbl_mb_no"
         android:layout_width="160dp"
         android:layout_height="49dp"
-        android:text="Enter the otp send to +919960776997"
+        android:text="Enter the otp send to +9191450405905"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,10 +38,10 @@
         android:id="@+id/editTextNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/numberinput"
         android:ems="10"
         android:inputType="number"
         android:maxLength="6"
+        android:background="@color/light_purple"
         android:minHeight="48dp"
         android:paddingStart="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,30 +54,17 @@
 
     <Button
         android:id="@+id/verifyOtp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_bg"
-        android:text="Verify"
+        android:layout_width="208dp"
+        android:layout_height="45dp"
+        android:background="@color/dark_purple"
+        android:text="@string/verify"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
-        app:layout_constraintVertical_bias="0.36" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Didn’t receive OTP?"
-        app:layout_constraintBottom_toTopOf="@+id/verifyOtp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.364"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.316" />
 
     <TextView
         android:id="@+id/resendOtpBtn"
@@ -102,10 +75,9 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/verifyOtp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.039"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
-        app:layout_constraintVertical_bias="0.359" />
+        app:layout_constraintVertical_bias="0.228" />
 
     <ProgressBar
         android:id="@+id/progressBar3"

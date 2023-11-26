@@ -118,7 +118,7 @@
                     android:layout_width="103dp"
                     android:layout_height="99dp"
                     android:layout_alignParentStart="true"
-                    app:srcCompat="@drawable/station_ico" />
+                    app:srcCompat="@drawable/car_icon" />
 
                 <TextView
                     android:id="@+id/timing_booking_page"
@@ -146,8 +146,8 @@
                     android:layout_marginTop="80dp"
                     android:layout_marginEnd="0dp"
                     android:layout_toEndOf="@+id/station_img_booking_page"
-                    android:background="@drawable/btn_bg"
-                    android:text="Reserve"
+                    android:background="@color/dark_purple"
+                    android:text="@string/book_now"
                     android:textColor="@color/white" />
 
 

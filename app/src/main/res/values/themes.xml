@@ -19,5 +19,15 @@
         <item name="fontFamily">@font/nunitosans_black</item>
         <!-- target android sdk versions < 26 and > 14 if theme other than AppCompat -->
     </style>
+    <style name="TicTacToeButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:background">@drawable/corner</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textColor">#8899FA</item>
+
+        <!-- Add other attributes as per your design requirements -->
+    </style>
 
 </resources>

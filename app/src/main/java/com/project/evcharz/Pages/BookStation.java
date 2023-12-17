@@ -26,6 +26,8 @@ import com.project.evcharz.R;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,8 +35,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class BookStation extends AppCompatActivity {
-    String SelectedTimeStart ,SelectedTimeEnd;
-    String selectedTimeStartTimeFormat,selectedTimeEndTimeFormat;
+    Calendar selectedTimeStartTimeFormat,selectedTimeEndTimeFormat;
     String selected_vehicle_type;
     PlaceModel selectedStation;
     double selected_vehicle_rate;
@@ -46,8 +47,9 @@ public class BookStation extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    String isSlotAvailable = "";
+    Boolean isSlotAvailable = true;
     ArrayList<BookingModel> bookingList;
+    TextView start_time,end_time;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -57,8 +59,8 @@ public class BookStation extends AppCompatActivity {
 
         selectedStation = (PlaceModel) getIntent().getSerializableExtra("StationModel");
 
-        TextView start_time = findViewById(R.id.start_time);
-        TextView end_time = findViewById(R.id.end_time);
+         start_time = findViewById(R.id.start_time);
+         end_time = findViewById(R.id.end_time);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("booking_details");
@@ -104,100 +106,16 @@ public class BookStation extends AppCompatActivity {
                 auto.setChecked(true);
             });
 
-
-        start_time.setOnClickListener(v -> {
-            Calendar currentTime = Calendar.getInstance();
-            int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
-            int currentMinute = currentTime.get(Calendar.MINUTE);
-
-            TimePickerDialog mTimePicker = new TimePickerDialog(this, (timePicker, selectedHour, selectedMinute) -> {
-                if (selectedHour < currentHour || (selectedHour == currentHour && selectedMinute < currentMinute)) {
-                    // Prevent selection of past time
-                    Toast.makeText(getApplicationContext(), "Invalid Time. Please select a valid time.", Toast.LENGTH_LONG).show();
-                } else {
-                    String min = String.valueOf(selectedMinute);
-                    if (min.length() == 1) {
-                        min = "0" + min;
-                    }
-                    selectedTimeStartTimeFormat = selectedHour + ":" + min + ":" + "00";
-                    if (selectedHour < 12) {
-                        SelectedTimeStart = selectedHour + " : " + min + " AM";
-                    } else {
-                        if (selectedHour != 12) {
-                            selectedHour = selectedHour - 12;
-                        }
-                        SelectedTimeStart = selectedHour + " : " + min + " PM";
-                    }
-                    start_time.setText(SelectedTimeStart);
-                }
-            }, currentHour, currentMinute, true);
-
-            mTimePicker.setTitle("Select Start Time");
-            mTimePicker.show();
-        });
-
-
-        end_time.setOnClickListener(v -> {
-            Calendar currentTime = Calendar.getInstance();
-            int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
-            int currentMinute = currentTime.get(Calendar.MINUTE);
-
-            TimePickerDialog mTimePicker = new TimePickerDialog(this, (timePicker, selectedHour, selectedMinute) -> {
-                if (selectedHour < currentHour || (selectedHour == currentHour && selectedMinute < currentMinute)) {
-                    // Prevent selection of past time
-                    Toast.makeText(getApplicationContext(), "Invalid Time. Please select a valid time.", Toast.LENGTH_LONG).show();
-                } else {
-                    String min = String.valueOf(selectedMinute);
-                    if (min.length() == 1) {
-                        min = "0" + min;
-                    }
-
-                    selectedHour = selectedHour + 1; // Increment by 1 hour
-                    int adjustedMinute = selectedMinute + 15; // Add 15 minutes
-                    if (adjustedMinute >= 60) {
-                        adjustedMinute -= 60;
-                        selectedHour += 1;
-                    }
-
-                    String adjustedMin = String.valueOf(adjustedMinute);
-                    if (adjustedMin.length() == 1) {
-                        adjustedMin = "0" + adjustedMin;
-                    }
-
-                    selectedTimeEndTimeFormat = selectedHour + ":" + adjustedMin + ":" + "00";
-
-                    if (selectedHour >= 0 && selectedHour < 12) {
-                        SelectedTimeEnd = selectedHour + " : " + adjustedMin + " AM";
-                    } else {
-                        if (selectedHour != 12) {
-                            selectedHour = selectedHour - 12;
-                        }
-                        SelectedTimeEnd = selectedHour + " : " + adjustedMin + " PM";
-                    }
-                    end_time.setText(SelectedTimeEnd);
-                }
-            }, currentHour, currentMinute, true);
-
-            mTimePicker.setTitle("Select End Time");
-            mTimePicker.show();
-        });
+        start_time.setOnClickListener(v -> showTimePickerDialog(start_time));
+        end_time.setOnClickListener(v -> showTimePickerDialog(end_time));
 
 
         btn_payment.setOnClickListener(v->{
             try {
                 if (checkSlotAvailability()){
-                    if ((SelectedTimeStart == null || SelectedTimeEnd == null)){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        builder.setMessage("Please fill all the details");
-                        builder.setCancelable(false);
-                        builder.setNegativeButton("Retry", (dialog, which) -> dialog.cancel());
-                        AlertDialog alert = builder.create();
-                        alert.show();
-                    }else{
-                        double time_period = checkDuration();
-                        Log.d("time_period", String.valueOf(time_period));
-
-                        if (time_period % 15 == 0){
+                    double time_period = checkDuration();
+                    time_period = Math.ceil(time_period / 15) * 15;
+                    if (time_period % 15 == 0){
                             double  price;
                             try {
                                 price = checkPrice();
@@ -205,8 +123,8 @@ public class BookStation extends AppCompatActivity {
                                     Intent i = new Intent(this,PaymentActivity.class);
                                     i.putExtra("price",new DecimalFormat("##.##").format(price));
                                     i.putExtra("StationModel",selectedStation);
-                                    i.putExtra("start_time",selectedTimeStartTimeFormat);
-                                    i.putExtra("end_time",selectedTimeEndTimeFormat);
+                                    i.putExtra("start_time", selectedTimeStartTimeFormat != null ? formatExactTime(selectedTimeStartTimeFormat) : "14:00:00");
+                                    i.putExtra("end_time", selectedTimeEndTimeFormat != null ? formatExactTime(selectedTimeEndTimeFormat) : "15:00:00");
                                     i.putExtra("vehicle_type",selected_vehicle_type);
                                     i.putExtra("unit_con",String.valueOf(selected_vehicle_rate));
                                     i.putExtra("duration",new DecimalFormat("##").format(time_period));
@@ -220,7 +138,7 @@ public class BookStation extends AppCompatActivity {
                         }else{
                             instruction.setText("time slot is not in multiple of 15 minutes");
                         }
-                    }
+
                 }else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setMessage("Slot Is Already Booked");
@@ -234,6 +152,49 @@ public class BookStation extends AppCompatActivity {
             }
         });
         findViewById(R.id.backBtn_booking).setOnClickListener(v-> finish());
+    }
+
+
+    public String formatExactTime(Calendar time){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss",Locale.getDefault());
+        return sdf.format(time.getTime());
+    }
+    private void showTimePickerDialog(TextView textView) {
+        Calendar currentTime = Calendar.getInstance();
+        int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
+        int currentMinute = currentTime.get(Calendar.MINUTE);
+
+         TimePickerDialog mTimePicker = new TimePickerDialog(this, (timePicker, selectedHour, selectedMinute) -> {
+            Calendar selectedTime = Calendar.getInstance();
+            selectedTime.set(Calendar.HOUR_OF_DAY, selectedHour);
+            selectedTime.set(Calendar.MINUTE, selectedMinute);
+
+             if (textView.getId() == R.id.end_time) {
+                 selectedTimeEndTimeFormat = selectedTime;
+             } else if (textView.getId() == R.id.start_time){
+                 selectedTimeStartTimeFormat = selectedTime;
+             }
+
+             if (selectedTime.before(currentTime)) {
+                Toast.makeText(getApplicationContext(), "Invalid Time. Please select a valid time.", Toast.LENGTH_LONG).show();
+            } else {
+                String selectedTimeFormat = formatTime(selectedHour, selectedMinute);
+                textView.setText(selectedTimeFormat);
+            }
+        }, currentHour, currentMinute, false);
+
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
+    }
+
+
+    private String formatTime(int hourOfDay, int minute) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        calendar.set(Calendar.MINUTE, minute);
+
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh : mm a", Locale.getDefault());
+        return timeFormat.format(calendar.getTime());
     }
 
     private double checkPrice() throws ParseException {
@@ -256,78 +217,64 @@ public class BookStation extends AppCompatActivity {
     }
 
     private long checkDuration() throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-        Date startDate = simpleDateFormat.parse(selectedTimeStartTimeFormat);
-        Date endDate = simpleDateFormat.parse(selectedTimeEndTimeFormat);
-        if(startDate != null && endDate != null){
-            long difference = endDate.getTime() - startDate.getTime();
-            if (difference < 0) {
-                difference = (24 * 60 * 60 * 1000) - startDate.getTime() + endDate.getTime();
-            }
-            return difference / (1000 * 60);
+        Date startDate = selectedTimeStartTimeFormat.getTime();
+        Date endDate = selectedTimeEndTimeFormat.getTime();
+        long difference = endDate.getTime() - startDate.getTime();
+        if (difference < 0) {
+            difference = (24 * 60 * 60 * 1000) - startDate.getTime() + endDate.getTime();
         }
-        return 0;
+        return difference / (1000 * 60);
     }
 
 
-    private boolean checkSlotAvailability(){
+    private boolean checkSlotAvailability() {
         bookingList = new ArrayList<>();
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                isSlotAvailable = true;
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                    bookingList.clear();
-                    isSlotAvailable = "false";
-                    BookingModel i = postSnapshot.getValue(BookingModel.class);
-                    assert i != null;
-                    if (Objects.equals(i.getStation_id(), selectedStation.getStation_id())) {
-                        bookingList.add(i);
+                    try {
+                        BookingModel i = postSnapshot.getValue(BookingModel.class);
+                        if (i != null && selectedStation != null && selectedStation.getStation_id() != null) {
+                            if (Objects.equals(i.getStation_id(), selectedStation.getStation_id())) {
+                                bookingList.add(i);
+                            }
+                        }
+                    } catch (Exception e) {
+                        Log.d("Exception", Objects.requireNonNull(e.getMessage()));
                     }
                 }
-                if (bookingList.isEmpty()) {
-                    isSlotAvailable = "true";
 
-                } else {
-                    bookingList.forEach(item -> {
-                        try {
-                            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                if (!bookingList.isEmpty()) {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss");
 
-                            Date startTime = sdf.parse(item.getStart_time());
-                            Calendar calendar1 = Calendar.getInstance();
-                            assert startTime != null;
-                            calendar1.setTime(startTime);
+                    LocalTime startTime = LocalTime.parse(formatExactTime(selectedTimeStartTimeFormat),formatter);
+                    LocalTime endTime = LocalTime.parse(formatExactTime(selectedTimeEndTimeFormat),formatter);
 
-                            Date endTime = sdf.parse(item.getEnd_time());
-                            Calendar calendar2 = Calendar.getInstance();
-                            assert endTime != null;
-                            calendar2.setTime(endTime);
+                    for (BookingModel item : bookingList) {
+                        if(item.getEnd_time() != null && item.getStart_time() != null){
+                            LocalTime itemStartTime = LocalTime.parse(item.getStart_time(),formatter);
+                            LocalTime itemEndTime = LocalTime.parse(item.getEnd_time(),formatter);
 
-                            Date randomTime = sdf.parse(SelectedTimeStart);
-                            Calendar calendar3 = Calendar.getInstance();
-                            assert randomTime != null;
-                            calendar3.setTime(randomTime);
-
-                            Date x = calendar3.getTime();
-
-                            if (x.after(calendar1.getTime()) && x.before(calendar2.getTime())) {
-                                isSlotAvailable = "false";
-                            } else {
-                                isSlotAvailable = "true";
+                            if ((startTime.isAfter(itemStartTime) && startTime.isBefore(itemEndTime)) ||
+                                    (endTime.isAfter(itemStartTime) && endTime.isBefore(itemEndTime)) ||
+                                    startTime.equals(itemStartTime) || endTime.equals(itemEndTime)) {
+                                isSlotAvailable = false;
+                                break;
                             }
-                        } catch (ParseException e) {
-                            e.printStackTrace();
                         }
-                    });
+                    }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getMessage());
+                Log.d("The read failed: " , databaseError.getMessage());
             }
         });
-        return Boolean.parseBoolean(isSlotAvailable);
+        return isSlotAvailable;
     }
 
 }

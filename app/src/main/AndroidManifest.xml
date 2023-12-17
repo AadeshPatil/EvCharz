@@ -26,6 +26,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".Pages.EntertainmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".Pages.CancleBookingSlotActivity"
             android:exported="true" />
         <activity
@@ -65,10 +68,11 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAoUz8oM5mnPEYiODNdOMiy_1pnTHZG3tY" />
+
         <receiver
             android:name="com.razorpay.RzpTokenReceiver"
-            android:exported="true"
-       />
+            android:exported="true" />
+
         <activity
             android:name=".Pages.HomeActivity"
             android:exported="true" />
@@ -92,9 +96,7 @@
         </activity>
         <activity
             android:name="com.razorpay.CheckoutActivity"
-            android:exported="true"
-            />
-
+            android:exported="true" />
     </application>
 
 </manifest>

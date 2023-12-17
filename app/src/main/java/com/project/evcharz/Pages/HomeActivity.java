@@ -190,7 +190,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 LatLng location = new LatLng(station.getLatitude(), station.getLongitude());
                                 Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.charging_station_icon);
                                 Bitmap smallMarker = Bitmap.createScaledBitmap(b, 80, 100, false);
-                                BitmapDescriptor station_icon = BitmapDescriptorFactory.fromBitmap(smallMarker);
+                                 station_icon = BitmapDescriptorFactory.fromBitmap(smallMarker);
                                 MarkerOptions markerOptions = new MarkerOptions()
                                         .position(location)
                                         .icon(station_icon)
@@ -210,10 +210,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 System.out.println("The read failed: " + databaseError.getMessage());
             }
         });
-
-
     }
-
 
     @Override
     public void onBackPressed() {
@@ -243,25 +240,29 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent3 = new Intent(HomeActivity.this, WalletActivity.class);
                 startActivity(intent3);
                 break;
-            case R.id.nav_Inquiry:
-                Intent intent4 = new Intent(HomeActivity.this, AboutUsActivity.class);
+            case R.id.nav_entertainment:
+                Intent intent4= new Intent(HomeActivity.this, EntertainmentActivity.class);
                 startActivity(intent4);
+                break;
+            case R.id.nav_Inquiry:
+                Intent intent5 = new Intent(HomeActivity.this, AboutUsActivity.class);
+                startActivity(intent5);
                 break;
             case R.id.nav_host_view:
                 DatabaseReference hostRef = firebaseDatabase.getReference("hostUserList");
                 hostRef.child(loggedUserMbNumber).get().addOnCompleteListener(task -> {
                     if (!task.isSuccessful()) {
-                        Intent intent5 = new Intent(HomeActivity.this, HostRegisterActivity.class);
-                        startActivity(intent5);
+                        Intent intent6 = new Intent(HomeActivity.this, HostRegisterActivity.class);
+                        startActivity(intent6);
                     } else {
                         HostModel hostModel = task.getResult().getValue(HostModel.class);
-                        Intent intent5;
+                        Intent intent6;
                         if (hostModel == null) {
-                            intent5 = new Intent(HomeActivity.this, HostRegisterActivity.class);
+                            intent6 = new Intent(HomeActivity.this, HostRegisterActivity.class);
                         } else {
-                            intent5 = new Intent(HomeActivity.this, HostViewActivity.class);
+                            intent6 = new Intent(HomeActivity.this, HostViewActivity.class);
                         }
-                        startActivity(intent5);
+                        startActivity(intent6);
                     }
                 });
                 break;
@@ -303,7 +304,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     100);
         } else {
-            googleMap1.setMyLocationEnabled(true); // Show user's location on map
+            googleMap1.setMyLocationEnabled(true);
             locationManager.requestLocationUpdates(
                     LocationManager.NETWORK_PROVIDER, 1000, 0, this);
             View locationButton = ((View) findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));

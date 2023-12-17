@@ -56,9 +56,6 @@ public class BookingConfirmationActivity extends AppCompatActivity {
         bookingObj = (BookingModel) getIntent().getSerializableExtra("bookingModel");
 
 
-//        selectedStation = new PlaceModel("123",17.134324,19.134132,"asha","10","4.9",null,"queerer");
-//        bookingID = "12344";
-
         showCelebration();
         TextView station_name = this.findViewById(R.id.nameOfStation);
         TextView distance = this.findViewById(R.id.distanceFromLoc);
@@ -98,7 +95,7 @@ public class BookingConfirmationActivity extends AppCompatActivity {
 
 
         getSupport.setOnClickListener(v->{
-            String number = "+91 8275813393";
+            String number = "+91 7218829436";
             String url = "https://api.whatsapp.com/send?phone="+number;
 
             Intent i = new Intent(Intent.ACTION_VIEW);
@@ -106,9 +103,6 @@ public class BookingConfirmationActivity extends AppCompatActivity {
             i.setData(Uri.parse(url));
             startActivity(i);
         });
-
-
-
 
         btn_cancle.setOnClickListener(v->{
             AlertDialog.Builder builder = new AlertDialog.Builder(this);

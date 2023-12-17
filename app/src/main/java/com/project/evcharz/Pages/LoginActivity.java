@@ -37,52 +37,74 @@ public class LoginActivity extends AppCompatActivity {
         buttonGetOTP.setOnClickListener(v -> {
             String phoneNumber = inputMobile.getText().toString().trim();
 
-            if (phoneNumber.isEmpty()) {
-                Toast.makeText(LoginActivity.this, "Enter mobile number", Toast.LENGTH_SHORT).show();
+            if (phoneNumber.length() != 10) {
+                Toast.makeText(LoginActivity.this, "Enter valid mobile number", Toast.LENGTH_SHORT).show();
                 return;
             }
-            String finalPhoneNumber = phoneNumber;
-
-            // Format the phone number correctly
             if (!phoneNumber.startsWith("+")) {
-                phoneNumber = "+91" + phoneNumber; // Assuming it's an Indian number, modify as needed
+                phoneNumber = "+91" + phoneNumber;
             }
 
             buttonGetOTP.setVisibility(View.INVISIBLE);
             progressBar.setVisibility(View.VISIBLE);
-
-            PhoneAuthOptions options =
-                    PhoneAuthOptions.newBuilder()
-                            .setPhoneNumber(phoneNumber)
-                            .setTimeout(60L, TimeUnit.SECONDS)
-                            .setActivity(this)
-                            .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                                @Override
-                                public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                    progressBar.setVisibility(View.GONE);
-                                    buttonGetOTP.setVisibility(View.VISIBLE);
-                                }
-
-                                @Override
-                                public void onVerificationFailed(@NonNull FirebaseException e) {
-                                    progressBar.setVisibility(View.GONE);
-                                    buttonGetOTP.setVisibility(View.VISIBLE);
-                                    Log.d("failedOTP", "onVerificationFailed: " + e.getMessage());
-                                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-
-                                @Override
-                                public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                    progressBar.setVisibility(View.GONE);
-                                    buttonGetOTP.setVisibility(View.VISIBLE);
-                                    Intent i = new Intent(LoginActivity.this, OtpValidation.class);
-                                    i.putExtra("phoneNo", finalPhoneNumber); // Send formatted phone number
-                                    i.putExtra("otp", verificationId);
-                                    startActivity(i);
-                                }
-                            })
-                            .build();
-            PhoneAuthProvider.verifyPhoneNumber(options);
+            initiatePhoneNumberVerification(phoneNumber);
         });
+    }
+
+    private void initiatePhoneNumberVerification(String phoneNumber) {
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder()
+                        .setPhoneNumber(phoneNumber)
+                        .setTimeout(60L, TimeUnit.SECONDS)
+                        .setActivity(this)
+                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                            @Override
+                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                                handleVerificationCompleted();
+                            }
+
+                            @Override
+                            public void onVerificationFailed(@NonNull FirebaseException e) {
+                                handleVerificationFailed(e);
+                            }
+
+                            @Override
+                            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                                handleCodeSent(verificationId);
+                            }
+                        })
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
+
+    private void handleVerificationCompleted() {
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        Button buttonGetOTP = findViewById(R.id.btn_sendOtp);
+        progressBar.setVisibility(View.GONE);
+        buttonGetOTP.setVisibility(View.VISIBLE);
+        // Handle verification completion if needed
+    }
+
+    private void handleVerificationFailed(FirebaseException exception) {
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        Button buttonGetOTP = findViewById(R.id.btn_sendOtp);
+        progressBar.setVisibility(View.GONE);
+        buttonGetOTP.setVisibility(View.VISIBLE);
+        Log.d("failedOTP", "onVerificationFailed: " + exception.getMessage());
+        Toast.makeText(LoginActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+        // Handle verification failure if needed
+    }
+
+    private void handleCodeSent(String verificationId) {
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        Button buttonGetOTP = findViewById(R.id.btn_sendOtp);
+        progressBar.setVisibility(View.GONE);
+        buttonGetOTP.setVisibility(View.VISIBLE);
+        EditText inputMobile = findViewById(R.id.txt_phoneNo);
+        String finalPhoneNumber = inputMobile.getText().toString().trim();
+        Intent i = new Intent(LoginActivity.this, OtpValidation.class);
+        i.putExtra("phoneNo", finalPhoneNumber); // Send formatted phone number
+        i.putExtra("otp", verificationId);
+        startActivity(i);
     }
 }

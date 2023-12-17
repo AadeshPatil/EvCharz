@@ -87,7 +87,6 @@ public class HostRegisterActivity extends AppCompatActivity implements OnMapRead
 
 
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_for_location);
-        assert supportMapFragment != null;
         supportMapFragment.getMapAsync(this);
 
     }

@@ -34,7 +34,7 @@ public class AboutUsActivity extends AppCompatActivity {
             Intent selectorIntent = new Intent(Intent.ACTION_SENDTO);
             selectorIntent.setData(Uri.parse("mailto:"));
             final Intent emailIntent = new Intent(Intent.ACTION_SEND);
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"aadeshpatil650@gmail.com"});
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"d24.dish@gmail.com"});
             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "");
             emailIntent.putExtra(Intent.EXTRA_TEXT, "");
             emailIntent.setSelector( selectorIntent );
@@ -45,7 +45,7 @@ public class AboutUsActivity extends AppCompatActivity {
         });
 
         mb.setOnClickListener(V->{
-            Uri u = Uri.parse("tel:8275813393");
+            Uri u = Uri.parse("tel:7218829436");
             Intent i = new Intent(Intent.ACTION_DIAL, u);
             try
             {
@@ -59,7 +59,7 @@ public class AboutUsActivity extends AppCompatActivity {
         });
 
         wup.setOnClickListener(v->{
-            String number = "+91 8275813393";
+            String number = "+91 7218829436";
             String url = "https://api.whatsapp.com/send?phone="+number;
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.putExtra(Intent.EXTRA_TEXT, "");

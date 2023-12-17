@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         loggedUserMbNumber = sh.getString("loggedUserMbNumber", "");
 
         Intent i;
-        if (loggedUserMbNumber == null || ("").equals(loggedUserMbNumber)) {
+        if ("".equals(loggedUserMbNumber)) {
             i = new Intent(MainActivity.this, LoginActivity.class);
         } else {
             i = new Intent(MainActivity.this, HomeActivity.class);

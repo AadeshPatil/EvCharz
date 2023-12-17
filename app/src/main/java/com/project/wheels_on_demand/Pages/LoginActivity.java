@@ -56,16 +56,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private String formatPhoneNumber(String phoneNumber) {
-        if (!phoneNumber.startsWith("+")) {
-            phoneNumber = "+91" + phoneNumber;
-        }
         return phoneNumber;
     }
 
     private void initiatePhoneNumberVerification(String phoneNumber) {
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(firebaseAuth)
-                        .setPhoneNumber(phoneNumber)
+                        .setPhoneNumber( "+91" +phoneNumber)
                         .setTimeout(60L, TimeUnit.SECONDS)
                         .setActivity(this)
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {

@@ -33,7 +33,10 @@
             android:id="@+id/nav_profile"
 android:icon="@drawable/ic_baseline_boy_24"
             android:title="Profile" />
-
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/inquiry_icon"
+            android:title="Contact Us" />
         <item
             android:id="@+id/nav_Logout"
 android:icon="@drawable/logout_icon"

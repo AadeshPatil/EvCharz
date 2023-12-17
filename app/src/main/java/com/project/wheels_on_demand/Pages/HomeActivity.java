@@ -237,6 +237,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent2 = new Intent(HomeActivity.this, MyBookingActivity.class);
                 startActivity(intent2);
                 break;
+            case R.id.nav_contact_us:
+                Intent intent6 = new Intent(HomeActivity.this, AboutUsActivity.class);
+                startActivity(intent6);
+                break;
             case R.id.nav_host_view:
                 DatabaseReference hostRef = firebaseDatabase.getReference("hostUserList");
                 hostRef.child(loggedUserMbNumber).get().addOnCompleteListener(task -> {

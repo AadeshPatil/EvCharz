@@ -12,11 +12,10 @@
         android:layout_height="359dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.575"
-        app:srcCompat="@drawable/reg_card" />
+        app:srcCompat="@drawable/side_nav_bar" />
 
     <ImageView
         android:id="@+id/launchWhatsapp"
@@ -24,9 +23,10 @@
         android:layout_height="66dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775"
+        app:layout_constraintVertical_bias="0.713"
         app:srcCompat="@drawable/telegram_ico" />
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="Keep In Touch"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView12"
@@ -52,6 +52,7 @@
         android:text="Email"
         android:textAlignment="center"
         android:textSize="20dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/imageView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -65,7 +66,7 @@
         android:layout_height="33dp"
         android:text="pardhipriya02@gmail.com"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/imageView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -80,6 +81,7 @@
         android:text="Phone"
         android:textAlignment="center"
         android:textSize="20dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/launchWhatsapp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -93,7 +95,7 @@
         android:layout_height="wrap_content"
         android:text="+91 9145040590"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/imageView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

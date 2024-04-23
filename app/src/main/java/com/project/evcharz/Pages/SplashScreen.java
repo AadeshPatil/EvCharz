@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.FirebaseApp;
 import com.project.evcharz.MainActivity;
-import com.project.evcharz.R;
 
 public class SplashScreen extends AppCompatActivity {
 

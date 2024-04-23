@@ -26,43 +26,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".Pages.EntertainmentActivity"
+            android:name="com.project.evcharz.Pages.EntertainmentActivity"
             android:exported="false" />
         <activity
-            android:name=".Pages.CancleBookingSlotActivity"
+            android:name="com.project.evcharz.Pages.CancleBookingSlotActivity"
             android:exported="true" />
         <activity
-            android:name=".Pages.HostRegisterActivity"
+            android:name="com.project.evcharz.Pages.HostRegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".Pages.HostViewActivity"
+            android:name="com.project.evcharz.Pages.HostViewActivity"
             android:exported="true" />
         <activity
-            android:name=".Pages.BookingConfirmationActivity"
+            android:name="com.project.evcharz.Pages.BookingConfirmationActivity"
             android:exported="true" />
         <activity
-            android:name=".Pages.AboutUsActivity"
+            android:name="com.project.evcharz.Pages.AboutUsActivity"
             android:exported="true" />
         <activity
-            android:name=".Pages.MyBookingActivity"
+            android:name="com.project.evcharz.Pages.MyBookingActivity"
             android:exported="true" />
         <activity
-            android:name=".Pages.WalletActivity"
+            android:name="com.project.evcharz.Pages.WalletActivity"
             android:exported="true" />
         <activity
-            android:name=".Pages.PaymentActivity"
+            android:name="com.project.evcharz.Pages.PaymentActivity"
             android:exported="true" />
         <activity
-            android:name=".Pages.BookStation"
+            android:name="com.project.evcharz.Pages.BookStation"
             android:exported="true" />
         <activity
-            android:name=".Pages.ViewDetails"
+            android:name="com.project.evcharz.Pages.ViewDetails"
             android:exported="true" />
         <activity
-            android:name=".Pages.ChargStationAdd"
+            android:name="com.project.evcharz.Pages.ChargStationAdd"
             android:exported="true" />
         <activity
-            android:name=".Pages.UserProfile"
+            android:name="com.project.evcharz.Pages.UserProfile"
             android:exported="true" />
 
         <meta-data
@@ -74,19 +74,19 @@
             android:exported="true" />
 
         <activity
-            android:name=".Pages.HomeActivity"
+            android:name="com.project.evcharz.Pages.HomeActivity"
             android:exported="true" />
         <activity
-            android:name=".Pages.OtpValidation"
+            android:name="com.project.evcharz.Pages.OtpValidation"
             android:exported="true" />
         <activity
-            android:name=".Pages.LoginActivity"
+            android:name="com.project.evcharz.Pages.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.project.evcharz.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".Pages.SplashScreen"
+            android:name="com.project.evcharz.Pages.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

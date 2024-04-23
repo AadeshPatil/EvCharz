@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.FirebaseApp;
 import com.project.evcharz.Pages.HomeActivity;
 import com.project.evcharz.Pages.LoginActivity;
-
+import com.project.evcharz.R;
 
 public class MainActivity extends AppCompatActivity {
     String loggedUserMbNumber;
